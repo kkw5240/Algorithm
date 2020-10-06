@@ -9,14 +9,40 @@ class StringCompressionTest {
 
     @Test
     int solution(String s) {
-        int answer = 0;
-
         int length = s.length();
-        int offset = length / 2;
+        int mid = length / 2;
+        int answer = length;
 
-        char[] test = s.toCharArray();
-        for (int i=length-1; i>=0; i--) {
-            System.out.println(test[i]);
+        StringBuilder compressedString;
+        String currString;
+        String prevString;
+        String compressedWord;
+        int counter = 1;
+
+        for (int i=1; i<=mid; i++) {
+            compressedString = new StringBuilder();
+            currString = "";
+            prevString = "";
+
+            for (int j=0; j<length; j+=i) {
+                currString = s.substring(j, Math.min(i+j, length));
+                if (currString.equals(prevString)) {
+                    counter++;
+                    continue;
+                }
+
+                compressedWord = counter > 1 ? counter + prevString : prevString;
+                compressedString.append(compressedWord);
+                counter = 1;
+
+                prevString = currString;
+            }
+
+            compressedWord = counter > 1 ? counter + currString : currString;
+            compressedString.append(compressedWord);
+            counter = 1;
+
+            answer = Math.min(compressedString.length(), answer);
         }
 
         return answer;
@@ -33,8 +59,3 @@ class StringCompressionTest {
         );
     }
 }
-
-//ab ca bc ab ca bc de de de de de de
-//ab ca bc ab ca bc 2de 2de 2de
-//ab ca bc ab ca bc 4de 2de
-//ab ca bc ab ca bc 6de
