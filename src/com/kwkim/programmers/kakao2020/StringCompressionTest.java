@@ -17,9 +17,10 @@ class StringCompressionTest {
         String currString;
         String prevString;
         String compressedWord;
-        int counter = 1;
+        int counter;
 
         for (int i=1; i<=mid; i++) {
+            counter = 1;
             compressedString = new StringBuilder();
             currString = "";
             prevString = "";
@@ -40,7 +41,6 @@ class StringCompressionTest {
 
             compressedWord = counter > 1 ? counter + currString : currString;
             compressedString.append(compressedWord);
-            counter = 1;
 
             answer = Math.min(compressedString.length(), answer);
         }
