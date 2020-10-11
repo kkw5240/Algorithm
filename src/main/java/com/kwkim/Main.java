@@ -1,4 +1,4 @@
-package com.kwkim;
+package main.java.com.kwkim;
 
 public class Main {
 

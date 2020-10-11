@@ -1,4 +1,4 @@
-package com.kwkim.programmers.kakao2020;
+package test.java.com.kwkim.programmers.kakao2020;
 
 import org.junit.jupiter.api.Test;
 
