@@ -1,7 +1,7 @@
 package main.java.com.kwkim.programmers.kakao2020;
 
 public class StringCompression {
-    public int solution(String s) {
+    public static int solution(String s) {
         int length = s.length();
         int mid = length / 2;
         int answer = length;
