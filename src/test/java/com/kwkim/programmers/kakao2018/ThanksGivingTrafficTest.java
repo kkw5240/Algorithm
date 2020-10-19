@@ -30,7 +30,7 @@ class ThanksGivingTrafficTest {
             chkPointList[i * 2] = log.getStart();
             chkPointList[i * 2 + 1] = log.getEnd();
 
-            chkPointList = insertionSort(chkPointList);
+            //chkPointList = insertionSort(chkPointList);
         }
 
         for (Long l : chkPointList) {
