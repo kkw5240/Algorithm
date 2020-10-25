@@ -1,7 +1,6 @@
 package main.java.com.kwkim.programmers.practice;
 
 import java.util.Arrays;
-import java.util.regex.Pattern;
 
 public class SkillTree {
     public int solution(String skill, String[] skill_trees) {
