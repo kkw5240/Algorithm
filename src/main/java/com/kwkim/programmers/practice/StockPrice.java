@@ -8,13 +8,12 @@ public class StockPrice {
         int priceLength = prices.length;
 
         for (int i=0; i<priceLength; i++) {
+            int counter = 0;
             for (int j=i+1; j<priceLength; j++) {
-                if (j == priceLength-1
-                        || prices[i] > prices[j]) {
-                    answer[i] = j-i;
-                    break;
-                }
+                counter++;
+                if (prices[i] > prices[j]) break;
             }
+            answer[i] = counter;
         }
 
         return answer;
