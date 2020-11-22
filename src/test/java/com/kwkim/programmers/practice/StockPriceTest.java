@@ -1,10 +1,10 @@
 package test.java.com.kwkim.programmers.practice;
 
 import main.java.com.kwkim.programmers.practice.StockPrice;
-import main.java.com.kwkim.programmers.practice.TriangularSnail;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class StockPriceTest {
     @Test

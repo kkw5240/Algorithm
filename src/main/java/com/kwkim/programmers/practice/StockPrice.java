@@ -1,7 +1,5 @@
 package main.java.com.kwkim.programmers.practice;
 
-import java.util.Arrays;
-
 public class StockPrice {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
