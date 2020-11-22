@@ -5,13 +5,15 @@ import java.util.Arrays;
 public class StockPrice {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
+        int priceLength = prices.length;
 
-        for (int i=1; i<prices.length; i++) {
-            for (int j=0; j<i; j++) {
-                if (prices[i] >= prices[j]) {
-                    answer[j]++;
-                }
+        for (int i=0; i<priceLength; i++) {
+            int counter = 0;
+            for (int j=i+1; j<priceLength; j++) {
+                counter++;
+                if (prices[i] > prices[j]) break;
             }
+            answer[i] = counter;
         }
 
         return answer;
