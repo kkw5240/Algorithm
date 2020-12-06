@@ -2,20 +2,41 @@ package main.java.com.kwkim.programmers.practice;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 //https://programmers.co.kr/learn/courses/30/lessons/42586
 public class ProgressSpeed {
     public int[] solution(int[] progresses, int[] speeds) {
-        int[] answer = {};
-
+        int[] answer;
         int lengthOfJob = progresses.length;
 
-        List<Integer> leftDaysList = new LinkedList<>();
+        Queue<Integer> leftDaysQueue = new ConcurrentLinkedDeque<>();
         for (int i=0; i<lengthOfJob; i++) {
-            leftDaysList.add(leftDays(progresses[i], speeds[i]));
+            leftDaysQueue.add(leftDays(progresses[i], speeds[i]));
         }
-        leftDaysList.forEach(System.out::println);
-        System.out.println();
+
+        int prev = leftDaysQueue.poll();
+        int processCounter = 1;
+        List<Integer> answerList = new LinkedList<>();
+
+        while (!leftDaysQueue.isEmpty()) {
+            int curr = leftDaysQueue.poll();
+            if (prev >= curr) {
+                processCounter++;
+                continue;
+            }
+
+            answerList.add(processCounter);
+            processCounter = 1;
+            prev = curr;
+        }
+
+        answerList.add(processCounter);
+        answer = new int[answerList.size()];
+        for (int i=0; i<answerList.size(); i++) {
+            answer[i] = answerList.get(i);
+        }
 
         return answer;
     }
