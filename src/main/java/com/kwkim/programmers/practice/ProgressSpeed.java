@@ -22,14 +22,13 @@ public class ProgressSpeed {
 
         while (!leftDaysQueue.isEmpty()) {
             int curr = leftDaysQueue.poll();
-            if (prev >= curr) {
-                processCounter++;
+            if (prev < curr) {
+                answerList.add(processCounter);
+                processCounter = 1;
+                prev = curr;
                 continue;
             }
-
-            answerList.add(processCounter);
-            processCounter = 1;
-            prev = curr;
+            processCounter++;
         }
 
         answerList.add(processCounter);
