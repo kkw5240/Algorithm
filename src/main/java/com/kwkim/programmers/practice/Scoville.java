@@ -12,18 +12,16 @@ public class Scoville {
             priorityQueue.offer(value);
         }
 
-        if (priorityQueue.peek() < K && priorityQueue.size() == 1) return -1;
-
-        while (priorityQueue.peek() < K) {
+        while (priorityQueue.peek() < K && priorityQueue.size() > 1) {
             priorityQueue.offer(
                     priorityQueue.poll()
-                    + (priorityQueue.poll() * 2)
+                            + (priorityQueue.poll() * 2)
             );
 
             answer++;
         }
 
-        return answer;
+        return priorityQueue.peek() >= K ? answer : -1;
     }
 }
 /*
