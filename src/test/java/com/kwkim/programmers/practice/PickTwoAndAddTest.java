@@ -1,10 +1,10 @@
 package test.java.com.kwkim.programmers.practice;
 
 import main.java.com.kwkim.programmers.practice.PickTwoAndAdd;
-import main.java.com.kwkim.programmers.practice.Scoville;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class PickTwoAndAddTest {
     @Test
