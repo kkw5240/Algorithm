@@ -1,9 +1,32 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/68644*/
+
 public class PickTwoAndAdd {
     public int[] solution(int[] numbers) {
         int[] answer = {};
+
+        Set<Integer> resultSet = new TreeSet<>();
+
+        int lengthOfNumbers = numbers.length;
+
+        for (int i = 0; i<lengthOfNumbers-1; i++) {
+            int target = numbers[i];
+            for (int j=i+1; j<lengthOfNumbers; j++) {
+                resultSet.add(target+numbers[j]);
+            }
+        }
+
+        answer = new int[resultSet.size()];
+        int counter = 0;
+        for (Integer number : resultSet) {
+            answer[counter] = number;
+            counter++;
+        }
+
         return answer;
     }
 }
