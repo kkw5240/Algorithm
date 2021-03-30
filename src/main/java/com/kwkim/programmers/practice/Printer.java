@@ -1,6 +1,5 @@
 package main.java.com.kwkim.programmers.practice;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,66 +7,83 @@ import java.util.Queue;
 public class Printer {
     private Queue<Document> queue;
 
-    public Printer() {
-        this.queue = new LinkedList<>();
+    public void loadDocumentsToQueue(int[] priorities) {
+        queue = new LinkedList<>();
+
+        for (int i = 0; i < priorities.length; i++) {
+            queue.add(
+                    new Document(priorities[i], i)
+            );
+        }
     }
 
-    public int solution(int[] priorities, int location) {
+    public int findOrderOfMyDocument(int location) {
         int answer = 0;
 
-        loadDocuments(priorities, location);
-
         while(!queue.isEmpty()) {
-            Document document = queue.poll();
-
-            int priority = document.getPriority();
-            int maxPriority = queue.stream()
-                    .max(
-                            Comparator.comparingInt(Document::getPriority)
-                    )
-                    .orElse(new Document(-1, false))
-                    .getPriority();
-
-            if (priority < maxPriority) {
-                queue.add(document);
-            } else {
-                answer++;
-                if (document.isMarkedLocation()) {
-                    return answer;
-                }
+            answer++;
+            int printedIndex = print();
+            if (printedIndex == location) {
+                return answer;
             }
         }
 
         return answer;
     }
 
-    private void loadDocuments(int[] priorities, int location) {
-        for (int i = 0; i < priorities.length; i++) {
-            queue.add(
-                    new Document(priorities[i], i == location)
-            );
+    private int print() {
+        Document document = queue.poll();
+        if (document == null) return -1;
+
+        if (isTurnToPrint(document)) {
+            return document.getIndex();
+        }
+
+        queue.add(document);
+        return print();
+    }
+
+    private boolean isTurnToPrint(Document targetDocument) {
+        for (Document document : queue) {
+            if (targetDocument.getPriority() < document.getPriority()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static class Document {
+        private final int priority;
+        private final int index;
+
+        public Document(int priority, int index) {
+            this.priority = priority;
+            this.index = index;
+        }
+
+        public int getPriority() {
+            return priority;
+        }
+
+        public int getIndex() {
+            return index;
         }
     }
 
-}
+    public static class Solution {
+        public int solution(int[] priorities, int location) {
+            int answer = 0;
 
-class Document {
-    private final int priority;
-    private final boolean locationMarker;
+            Printer printer = new Printer();
 
-    public Document(int priority, boolean locationMarker) {
-        this.priority = priority;
-        this.locationMarker = locationMarker;
-    }
+            printer.loadDocumentsToQueue(priorities);
+            answer = printer.findOrderOfMyDocument(location);
 
-    public int getPriority() {
-        return priority;
-    }
-
-    public boolean isMarkedLocation() {
-        return locationMarker;
+            return answer;
+        }
     }
 }
+
 
 /*
 
@@ -109,38 +125,3 @@ priorities	        location	return
         6개의 문서(A, B, C, D, E, F)가 인쇄 대기목록에 있고 중요도가 1 1 9 1 1 1 이므로 C D E F A B 순으로 인쇄합니다.
 
 */
-class Solution {
-    public int solution(int[] priorities, int location) {
-        int answer = 0;
-
-        Queue<Document> queue = new LinkedList<>();
-        for (int i = 0; i < priorities.length; i++) {
-            queue.add(
-                    new Document(priorities[i], i == location)
-            );
-        }
-
-        while(!queue.isEmpty()) {
-            Document document = queue.poll();
-
-            int priority = document.getPriority();
-            int maxPriority = queue.stream()
-                    .max(
-                            Comparator.comparingInt(Document::getPriority)
-                    )
-                    .orElse(new Document(-1, false))
-                    .getPriority();
-
-            if (priority < maxPriority) {
-                queue.add(document);
-            } else {
-                answer++;
-                if (document.isMarkedLocation()) {
-                    return answer;
-                }
-            }
-        }
-
-        return answer;
-    }
-}

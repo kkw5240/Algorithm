@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PrinterTest {
     @Test
     void doSolution() {
-        Printer printer = new Printer();
+        Printer.Solution printer = new Printer.Solution();
 
         assertAll(
                 () -> assertEquals(
