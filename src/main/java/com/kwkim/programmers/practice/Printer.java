@@ -1,12 +1,56 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.*;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42587*/
 public class Printer {
     public int solution(int[] priorities, int location) {
         int answer = 0;
+
+        Queue<Map<ValueType, Object>> queue = new LinkedList<>();
+        for (int i = 0; i < priorities.length; i++) {
+            Map<ValueType, Object> item = new HashMap<>();
+
+            item.put(ValueType.PRIORITY, priorities[i]);
+            item.put(ValueType.LOCATION_MARKER, i == location);
+
+            queue.add(item);
+        }
+
+        while(!queue.isEmpty()) {
+            Map<ValueType, Object> item = queue.poll();
+
+            //TODO: ???
+            int priority = (int) item.get(ValueType.PRIORITY);
+
+            Map<ValueType, Object> maxPriorityItem = queue.stream()
+                    .max((o1, o2) -> {
+                        int priority1 = (int) o1.get(ValueType.PRIORITY);
+                        int priority2 = (int) o2.get(ValueType.PRIORITY);
+
+                        return priority1 - priority2;
+                    })
+                    .orElse(Collections.emptyMap());
+            int max = (int) maxPriorityItem.get(ValueType.PRIORITY);
+
+            if (priority < max) {
+                queue.add(item);
+            } else {
+                answer++;
+                boolean myLocation = (boolean) item.get(ValueType.LOCATION_MARKER);
+                if (myLocation) {
+                    return answer;
+                }
+            }
+        }
+
         return answer;
     }
 }
+enum ValueType {
+    PRIORITY, LOCATION_MARKER
+}
+
 /*
 
 [ 프린터 ]
