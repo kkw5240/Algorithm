@@ -1,44 +1,38 @@
 package main.java.com.kwkim.programmers.practice;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42587*/
 public class Printer {
+    private Queue<Document> queue;
+
+    public Printer() {
+        this.queue = new LinkedList<>();
+    }
+
     public int solution(int[] priorities, int location) {
         int answer = 0;
 
-        Queue<Map<ValueType, Object>> queue = new LinkedList<>();
-        for (int i = 0; i < priorities.length; i++) {
-            Map<ValueType, Object> item = new HashMap<>();
-
-            item.put(ValueType.PRIORITY, priorities[i]);
-            item.put(ValueType.LOCATION_MARKER, i == location);
-
-            queue.add(item);
-        }
+        loadDocuments(priorities, location);
 
         while(!queue.isEmpty()) {
-            Map<ValueType, Object> item = queue.poll();
+            Document document = queue.poll();
 
-            //TODO: ???
-            int priority = (int) item.get(ValueType.PRIORITY);
+            int priority = document.getPriority();
+            int maxPriority = queue.stream()
+                    .max(
+                            Comparator.comparingInt(Document::getPriority)
+                    )
+                    .orElse(new Document(-1, false))
+                    .getPriority();
 
-            Map<ValueType, Object> maxPriorityItem = queue.stream()
-                    .max((o1, o2) -> {
-                        int priority1 = (int) o1.get(ValueType.PRIORITY);
-                        int priority2 = (int) o2.get(ValueType.PRIORITY);
-
-                        return priority1 - priority2;
-                    })
-                    .orElse(Collections.emptyMap());
-            int max = (int) maxPriorityItem.get(ValueType.PRIORITY);
-
-            if (priority < max) {
-                queue.add(item);
+            if (priority < maxPriority) {
+                queue.add(document);
             } else {
                 answer++;
-                boolean myLocation = (boolean) item.get(ValueType.LOCATION_MARKER);
-                if (myLocation) {
+                if (document.isMarkedLocation()) {
                     return answer;
                 }
             }
@@ -46,9 +40,33 @@ public class Printer {
 
         return answer;
     }
+
+    private void loadDocuments(int[] priorities, int location) {
+        for (int i = 0; i < priorities.length; i++) {
+            queue.add(
+                    new Document(priorities[i], i == location)
+            );
+        }
+    }
+
 }
-enum ValueType {
-    PRIORITY, LOCATION_MARKER
+
+class Document {
+    private final int priority;
+    private final boolean locationMarker;
+
+    public Document(int priority, boolean locationMarker) {
+        this.priority = priority;
+        this.locationMarker = locationMarker;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public boolean isMarkedLocation() {
+        return locationMarker;
+    }
 }
 
 /*
@@ -91,3 +109,38 @@ priorities	        location	return
         6개의 문서(A, B, C, D, E, F)가 인쇄 대기목록에 있고 중요도가 1 1 9 1 1 1 이므로 C D E F A B 순으로 인쇄합니다.
 
 */
+class Solution {
+    public int solution(int[] priorities, int location) {
+        int answer = 0;
+
+        Queue<Document> queue = new LinkedList<>();
+        for (int i = 0; i < priorities.length; i++) {
+            queue.add(
+                    new Document(priorities[i], i == location)
+            );
+        }
+
+        while(!queue.isEmpty()) {
+            Document document = queue.poll();
+
+            int priority = document.getPriority();
+            int maxPriority = queue.stream()
+                    .max(
+                            Comparator.comparingInt(Document::getPriority)
+                    )
+                    .orElse(new Document(-1, false))
+                    .getPriority();
+
+            if (priority < maxPriority) {
+                queue.add(document);
+            } else {
+                answer++;
+                if (document.isMarkedLocation()) {
+                    return answer;
+                }
+            }
+        }
+
+        return answer;
+    }
+}
