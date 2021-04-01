@@ -1,12 +1,79 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42583*/
 public class TruckPassingTheBridge {
+    private final Bridge bridge;
+
+    public TruckPassingTheBridge(int bridge_length, int weight, int[] truck_weights) {
+        bridge = new Bridge(bridge_length);
+    }
+
     public static class Solution {
         public int solution(int bridge_length, int weight, int[] truck_weights) {
             int answer = 0;
-            return answer;
+
+            Queue<Integer> bridge = new LinkedList<>();
+
+            int totalWeight = 0;
+            for (int truckWeight : truck_weights) {
+                while(true) {
+                    if (bridge.isEmpty()) {
+                        bridge.add(truckWeight);
+                        totalWeight += truckWeight;
+                        answer++;
+                        break;
+
+                    } else if (bridge.size() == bridge_length) {
+                        totalWeight -= bridge.poll();
+
+                    } else {
+                        if (totalWeight + truckWeight > weight) {
+                            bridge.add(0);
+                            answer++;
+
+                        } else {
+                            bridge.add(truckWeight);
+                            totalWeight += truckWeight;
+                            answer++;
+                            break;
+                        }
+
+                    }
+
+                }
+            }
+
+            return answer + bridge_length;
         }
+    }
+}
+
+class Bridge extends LinkedList<Integer> {
+    private final int limit;
+
+    public Bridge(int limit) {
+        this.limit = limit;
+    }
+
+    @Override
+    public boolean add(Integer o) {
+        boolean result = super.add(o);
+        while (size() > limit) { super.remove(); }
+        return result;
+    }
+
+    public int calculateBridgeWeight() {
+        return this.stream().reduce(0, Integer::sum);
+    }
+
+    public void showBridgeStatus() {
+        System.out.println("BRIDGE STATUS ==============================");
+        this.forEach(System.out::println);
+        System.out.println("============================================");
+        System.out.println();
     }
 }
 /*
