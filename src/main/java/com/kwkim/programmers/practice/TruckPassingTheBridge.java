@@ -5,12 +5,6 @@ import java.util.Queue;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42583*/
 public class TruckPassingTheBridge {
-    private final Bridge bridge;
-
-    public TruckPassingTheBridge(int bridge_length, int weight, int[] truck_weights) {
-        bridge = new Bridge(bridge_length);
-    }
-
     public static class Solution {
         public int solution(int bridge_length, int weight, int[] truck_weights) {
             int answer = 0;
@@ -48,32 +42,6 @@ public class TruckPassingTheBridge {
 
             return answer + bridge_length;
         }
-    }
-}
-
-class Bridge extends LinkedList<Integer> {
-    private final int limit;
-
-    public Bridge(int limit) {
-        this.limit = limit;
-    }
-
-    @Override
-    public boolean add(Integer o) {
-        boolean result = super.add(o);
-        while (size() > limit) { super.remove(); }
-        return result;
-    }
-
-    public int calculateBridgeWeight() {
-        return this.stream().reduce(0, Integer::sum);
-    }
-
-    public void showBridgeStatus() {
-        System.out.println("BRIDGE STATUS ==============================");
-        this.forEach(System.out::println);
-        System.out.println("============================================");
-        System.out.println();
     }
 }
 /*
