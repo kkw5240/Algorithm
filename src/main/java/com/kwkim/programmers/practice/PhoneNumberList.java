@@ -7,14 +7,9 @@ public class PhoneNumberList {
     public boolean solution(String[] phone_book) {
         Arrays.sort(phone_book);
 
-        for (int i = 0; i < phone_book.length; i++) {
-            String prefix = phone_book[i];
-
-            for (int j=i+1; j < phone_book.length; j++) {
-                String phoneNumber = phone_book[j];
-                if (phoneNumber.startsWith(prefix)) {
-                    return false;
-                }
+        for (int i = 0; i < phone_book.length-1; i++) {
+            if (phone_book[i+1].startsWith(phone_book[i])) {
+                return false;
             }
         }
 
