@@ -1,24 +1,24 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Arrays;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42577*/
 public class PhoneNumberList {
     public boolean solution(String[] phone_book) {
-        boolean answer = true;
+        Arrays.sort(phone_book);
 
-        int[] counterArray = new int[phone_book.length];
         for (int i = 0; i < phone_book.length; i++) {
-            for (String target : phone_book) {
-                if (target.startsWith(phone_book[i])) counterArray[i]++;
+            String prefix = phone_book[i];
+
+            for (int j=i+1; j < phone_book.length; j++) {
+                String phoneNumber = phone_book[j];
+                if (phoneNumber.startsWith(prefix)) {
+                    return false;
+                }
             }
         }
 
-        for (int counter : counterArray) {
-            System.out.println(counter);
-            answer &= counter == 1;
-        }
-        System.out.println("============================");
-
-        return answer;
+        return true;
     }
 }
 /*
