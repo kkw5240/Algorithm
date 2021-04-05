@@ -4,6 +4,20 @@ package main.java.com.kwkim.programmers.practice;
 public class PhoneNumberList {
     public boolean solution(String[] phone_book) {
         boolean answer = true;
+
+        int[] counterArray = new int[phone_book.length];
+        for (int i = 0; i < phone_book.length; i++) {
+            for (String target : phone_book) {
+                if (target.startsWith(phone_book[i])) counterArray[i]++;
+            }
+        }
+
+        for (int counter : counterArray) {
+            System.out.println(counter);
+            answer &= counter == 1;
+        }
+        System.out.println("============================");
+
         return answer;
     }
 }
