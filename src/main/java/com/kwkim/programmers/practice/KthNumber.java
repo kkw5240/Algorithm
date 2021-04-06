@@ -1,9 +1,27 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Arrays;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42748*/
 public class KthNumber {
     public int[] solution(int[] array, int[][] commands) {
-        int[] answer = {};
+        int[] answer = new int[commands.length];
+
+        for (int index = 0; index < commands.length; index++) {
+            int[] command = commands[index];
+            int i = command[0] - 1;
+            int j = command[1];
+            int k = command[2] - 1;
+
+            int[] temp = Arrays.stream(array)
+                    .limit(j)
+                    .skip(i)
+                    .sorted()
+                    .toArray();
+
+            answer[index] = temp[k];
+        }
+
         return answer;
     }
 }
