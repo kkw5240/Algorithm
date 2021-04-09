@@ -1,10 +1,53 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/64061*/
 public class CraneDollPullingMachine {
     public int solution(int[][] board, int[] moves) {
-        int answer = 0;
-        return answer;
+        List<Stack<Integer>> position = loadDollByPosition(board);
+        return calcPopCountByPickedDoll(moves, position);
+    }
+
+    private List<Stack<Integer>> loadDollByPosition(int[][] board) {
+        List<Stack<Integer>> position = new ArrayList<>(board.length);
+
+        for (int i = 0; i < board.length; i++) {
+            Stack<Integer> stack = new Stack<>();
+
+            for (int j = board.length-1; j >= 0 ; j--) {
+                int doll = board[j][i];
+                if (doll != 0) stack.push(doll);
+            }
+
+            position.add(stack);
+        }
+
+        return position;
+    }
+
+    private int calcPopCountByPickedDoll(int[] moves, List<Stack<Integer>> position) {
+        int counter = 0;
+
+        Stack<Integer> basket = new Stack<>();
+        for (int move : moves) {
+            Stack<Integer> stack = position.get(move - 1);
+
+            if (stack.isEmpty()) continue;
+
+            int pickedDoll = stack.pop();
+
+            if (basket.isEmpty() || basket.peek() != pickedDoll) {
+                basket.push(pickedDoll);
+            } else {
+                basket.pop();
+                counter += 2;
+            }
+        }
+
+        return counter;
     }
 }
 /*
