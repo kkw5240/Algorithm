@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.kakao2018;
+package main.java.com.kwkim.programmers.kakao2018;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -85,7 +85,7 @@ class ThanksGivingTrafficTest {
 
     @Test
     void test() {
-        assertAll("test",
+        assertAll("",
                 () -> assertEquals(1, solution(
                         new String[]{
                                 "2016-09-15 01:00:04.001 2.0s",

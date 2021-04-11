@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.practice;
+package main.java.com.kwkim.programmers.practice;
 
 import main.java.com.kwkim.programmers.practice.Printer;
 import org.junit.jupiter.api.Test;

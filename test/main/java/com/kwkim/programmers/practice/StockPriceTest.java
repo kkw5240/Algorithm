@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.practice;
+package main.java.com.kwkim.programmers.practice;
 
 import main.java.com.kwkim.programmers.practice.StockPrice;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ class StockPriceTest {
     public void doSolution() {
         StockPrice stockPrice = new StockPrice();
 
-        assertAll("test",
+        assertAll("",
                 () -> assertArrayEquals(
                         new int[]{4, 3, 1, 1, 0},
                         stockPrice.solution(new int[]{1, 2, 3, 2, 3})
