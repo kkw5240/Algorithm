@@ -1,10 +1,18 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42576?language=java*/
 public class AthleteWhoCouldntFinish {
     public String solution(String[] participant, String[] completion) {
-        String answer = "";
-        return answer;
+        LinkedList<String> participantList = new LinkedList<>(Arrays.asList(participant));
+
+        for (String athlete : completion) {
+            participantList.remove(athlete);
+        }
+
+        return participantList.poll();
     }
 }
 /*
