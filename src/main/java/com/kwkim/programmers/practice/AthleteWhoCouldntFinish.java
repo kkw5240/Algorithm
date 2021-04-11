@@ -1,18 +1,32 @@
 package main.java.com.kwkim.programmers.practice;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42576?language=java*/
 public class AthleteWhoCouldntFinish {
     public String solution(String[] participant, String[] completion) {
-        LinkedList<String> participantList = new LinkedList<>(Arrays.asList(participant));
 
-        for (String athlete : completion) {
-            participantList.remove(athlete);
+        Map<String, Integer> athleteMap = new HashMap<>();
+
+        for (String athlete : participant) {
+            int count = Optional.ofNullable(athleteMap.get(athlete)).orElse(0);
+            athleteMap.put(athlete, ++count);
         }
 
-        return participantList.poll();
+        for (String athlete : completion) {
+            int count = athleteMap.get(athlete);
+            athleteMap.put(athlete, --count);
+        }
+
+        for (String athlete : athleteMap.keySet()) {
+            if (athleteMap.get(athlete) > 0) {
+                return athlete;
+            }
+        }
+
+        return null;
     }
 }
 /*
