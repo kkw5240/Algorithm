@@ -6,18 +6,13 @@ import java.util.Comparator;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42840*/
 public class PracticeTest {
-
-    private static final ArrayList<StudentWhoGaveUpMath> students;
-
-    static {
-        students = new ArrayList<>(
+    private final ArrayList<StudentWhoGaveUpMath> students = new ArrayList<>(
             Arrays.asList(
-                    new StudentWhoGaveUpMath(1, new int[]{1, 2, 3, 4, 5}),
-                    new StudentWhoGaveUpMath(2, new int[]{2, 1, 2, 3, 2, 4, 2, 5}),
-                    new StudentWhoGaveUpMath(3, new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5, 5})
+                    new StudentWhoGaveUpMath(1, new int[]{ 1, 2, 3, 4, 5 }),
+                    new StudentWhoGaveUpMath(2, new int[]{ 2, 1, 2, 3, 2, 4, 2, 5 }),
+                    new StudentWhoGaveUpMath(3, new int[]{ 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 })
             )
-        );
-    }
+    );
 
     public int[] solution(int[] answers) {
         int[] answer;
