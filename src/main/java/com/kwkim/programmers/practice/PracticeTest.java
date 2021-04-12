@@ -21,12 +21,20 @@ public class PracticeTest {
 
         Object[] winners = findWinners();
 
-        answer = new int[winners.length];
-        for (int i = 0; i < winners.length; i++) {
-            answer[i] = (int) winners[i];
-        }
+        answer = buildAnswerFromWinners(winners);
 
         return answer;
+    }
+
+    private void scores(int[] answers) {
+        for (int i = 0; i < answers.length; i++) {
+            int index = i;
+            students.forEach(s -> {
+                if (answers[index] == s.guess(index)) {
+                    s.addScore();
+                }
+            });
+        }
     }
 
     private Object[] findWinners() {
@@ -41,15 +49,13 @@ public class PracticeTest {
                 .toArray();
     }
 
-    private void scores(int[] answers) {
-        for (int i = 0; i < answers.length; i++) {
-            int index = i;
-            students.forEach(s -> {
-                if (answers[index] == s.guess(index)) {
-                    s.addScore();
-                }
-            });
+    private int[] buildAnswerFromWinners(Object[] winners) {
+        int[] answer;
+        answer = new int[winners.length];
+        for (int i = 0; i < winners.length; i++) {
+            answer[i] = (int) winners[i];
         }
+        return answer;
     }
 }
 

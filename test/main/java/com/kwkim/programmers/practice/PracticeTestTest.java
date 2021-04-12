@@ -8,16 +8,14 @@ class PracticeTestTest {
     @Test
     void solutionTest() {
 
-        PracticeTest practiceTest = new PracticeTest();
-
         assertAll(
                 () -> assertArrayEquals(
                         new int[] {1},
-                        practiceTest.solution(new int[]{ 1,2,3,4,5 })
+                        new PracticeTest().solution(new int[]{ 1,2,3,4,5 })
                 ),
                 () -> assertArrayEquals(
                         new int[] { 1,2,3 },
-                        practiceTest.solution(new int[]{ 1,3,2,4,2 })
+                        new PracticeTest().solution(new int[]{ 1,3,2,4,2 })
                 )
         );
     }
