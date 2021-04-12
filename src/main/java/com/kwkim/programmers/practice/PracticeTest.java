@@ -2,49 +2,89 @@ package main.java.com.kwkim.programmers.practice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Comparator;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42840*/
 public class PracticeTest {
+
+    private static final ArrayList<StudentWhoGaveUpMath> students;
+
+    static {
+        students = new ArrayList<>(
+            Arrays.asList(
+                    new StudentWhoGaveUpMath(1, new int[]{1, 2, 3, 4, 5}),
+                    new StudentWhoGaveUpMath(2, new int[]{2, 1, 2, 3, 2, 4, 2, 5}),
+                    new StudentWhoGaveUpMath(3, new int[]{3, 3, 1, 1, 2, 2, 4, 4, 5, 5})
+            )
+        );
+    }
+
     public int[] solution(int[] answers) {
         int[] answer;
 
-        int[] ruleOfFirst = new int[]{ 1, 2, 3, 4, 5 };
-        int[] ruleOfSecond = new int[]{ 2, 1, 2, 3, 2, 4, 2, 5 };
-        int[] ruleOfThird = new int[]{ 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+        scores(answers);
 
-        int[] answerCounter = new int[3];
-        for (int i = 0; i < answers.length; i++) {
-            if (answers[i] == ruleOfFirst[i % ruleOfFirst.length]) {
-                answerCounter[0]++;
-            }
-            if (answers[i] == ruleOfSecond[i % ruleOfSecond.length]) {
-                answerCounter[1]++;
-            }
-            if (answers[i] == ruleOfThird[i % ruleOfThird.length]) {
-                answerCounter[2]++;
-            }
-        }
+        Object[] winners = findWinners();
 
-        int max = Arrays.stream(answerCounter)
-                .max()
-                .orElse(0);
-
-        List<Integer> answerList = new ArrayList<>();
-        for (int i = 0; i < answerCounter.length; i++) {
-            if (answerCounter[i] == max) {
-                answerList.add(i+1);
-            }
-        }
-
-        answer = new int[answerList.size()];
-        for (int i = 0; i < answerList.size(); i++) {
-            answer[i] = answerList.get(i);
+        answer = new int[winners.length];
+        for (int i = 0; i < winners.length; i++) {
+            answer[i] = (int) winners[i];
         }
 
         return answer;
     }
+
+    private Object[] findWinners() {
+        int max = students.stream()
+                .max(Comparator.comparingInt(StudentWhoGaveUpMath::getScore))
+                .orElse(new StudentWhoGaveUpMath(0, new int[]{}))
+                .getScore();
+
+        Object[] temp = students.stream()
+                .filter(s -> s.getScore() == max)
+                .map(StudentWhoGaveUpMath::getId)
+                .toArray();
+        return temp;
+    }
+
+    private void scores(int[] answers) {
+        for (int i = 0; i < answers.length; i++) {
+            int index = i;
+            students.forEach(s -> {
+                if (answers[index] == s.guess(index)) {
+                    s.addScore();
+                }
+            });
+        }
+    }
 }
+
+class StudentWhoGaveUpMath {
+    private final int id;
+    private final int[] rule;
+    private int score;
+
+    protected StudentWhoGaveUpMath(int id, int[] rule) {
+        this.id = id;
+        this.rule = rule;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+    public void addScore() {
+        this.score++;
+    }
+
+    public int guess(int index) {
+        return rule[index % rule.length];
+    }
+}
+
 /*
 
 모의고사
