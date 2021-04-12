@@ -7,7 +7,6 @@ import java.util.Optional;
 /*https://programmers.co.kr/learn/courses/30/lessons/42576?language=java*/
 public class AthleteWhoCouldntFinish {
     public String solution(String[] participant, String[] completion) {
-
         Map<String, Integer> athleteMap = new HashMap<>();
 
         for (String athlete : participant) {

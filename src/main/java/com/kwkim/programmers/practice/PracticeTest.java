@@ -1,9 +1,46 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42840*/
 public class PracticeTest {
     public int[] solution(int[] answers) {
-        int[] answer = {};
+        int[] answer;
+
+        int[] ruleOfFirst = new int[]{ 1, 2, 3, 4, 5 };
+        int[] ruleOfSecond = new int[]{ 2, 1, 2, 3, 2, 4, 2, 5 };
+        int[] ruleOfThird = new int[]{ 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
+
+        int[] answerCounter = new int[3];
+        int max = 0;
+        for (int i = 0; i < answers.length; i++) {
+            if (answers[i] == ruleOfFirst[i % ruleOfFirst.length]) {
+                answerCounter[0]++;
+                if (max < answerCounter[0]) max = answerCounter[0];
+            }
+            if (answers[i] == ruleOfSecond[i % ruleOfFirst.length]) {
+                answerCounter[1]++;
+                if (max < answerCounter[1]) max = answerCounter[1];
+            }
+            if (answers[i] == ruleOfThird[i % ruleOfFirst.length]) {
+                answerCounter[2]++;
+                if (max < answerCounter[2]) max = answerCounter[2];
+            }
+        }
+
+        List<Integer> answerList = new ArrayList<>();
+        for (int i = 0; i < answerCounter.length; i++) {
+            if (answerCounter[i] >= max) {
+                answerList.add(i+1);
+            }
+        }
+
+        answer = new int[answerList.size()];
+        for (int i = 0; i < answerList.size(); i++) {
+            answer[i] = answerList.get(i);
+        }
+
         return answer;
     }
 }
