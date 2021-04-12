@@ -40,11 +40,10 @@ public class PracticeTest {
                 .orElse(new StudentWhoGaveUpMath(0, new int[]{}))
                 .getScore();
 
-        Object[] temp = students.stream()
+        return students.stream()
                 .filter(s -> s.getScore() == max)
                 .map(StudentWhoGaveUpMath::getId)
                 .toArray();
-        return temp;
     }
 
     private void scores(int[] answers) {
