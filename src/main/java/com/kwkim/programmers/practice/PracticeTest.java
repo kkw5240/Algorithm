@@ -1,6 +1,7 @@
 package main.java.com.kwkim.programmers.practice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/42840*/
@@ -13,25 +14,25 @@ public class PracticeTest {
         int[] ruleOfThird = new int[]{ 3, 3, 1, 1, 2, 2, 4, 4, 5, 5 };
 
         int[] answerCounter = new int[3];
-        int max = 0;
         for (int i = 0; i < answers.length; i++) {
             if (answers[i] == ruleOfFirst[i % ruleOfFirst.length]) {
                 answerCounter[0]++;
-                if (max < answerCounter[0]) max = answerCounter[0];
             }
-            if (answers[i] == ruleOfSecond[i % ruleOfFirst.length]) {
+            if (answers[i] == ruleOfSecond[i % ruleOfSecond.length]) {
                 answerCounter[1]++;
-                if (max < answerCounter[1]) max = answerCounter[1];
             }
-            if (answers[i] == ruleOfThird[i % ruleOfFirst.length]) {
+            if (answers[i] == ruleOfThird[i % ruleOfThird.length]) {
                 answerCounter[2]++;
-                if (max < answerCounter[2]) max = answerCounter[2];
             }
         }
 
+        int max = Arrays.stream(answerCounter)
+                .max()
+                .orElse(0);
+
         List<Integer> answerList = new ArrayList<>();
         for (int i = 0; i < answerCounter.length; i++) {
-            if (answerCounter[i] >= max) {
+            if (answerCounter[i] == max) {
                 answerList.add(i+1);
             }
         }
