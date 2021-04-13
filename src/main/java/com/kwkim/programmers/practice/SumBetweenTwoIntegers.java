@@ -3,8 +3,10 @@ package main.java.com.kwkim.programmers.practice;
 /*https://programmers.co.kr/learn/courses/30/lessons/12912*/
 public class SumBetweenTwoIntegers {
     public long solution(int a, int b) {
-        long answer = 0;
-        return answer;
+        int big = Math.max(a, b);
+        int small = Math.min(a, b);
+
+        return ((long) (big - small + 1) * (small + big)) / 2;
     }
 }
 /*
