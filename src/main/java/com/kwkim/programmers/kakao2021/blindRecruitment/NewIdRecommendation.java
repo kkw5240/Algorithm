@@ -1,30 +1,60 @@
 package main.java.com.kwkim.programmers.kakao2021.blindRecruitment;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/72410*/
 public class NewIdRecommendation {
     public String solution(String new_id) {
-        String answer = "";
+        String answer = new_id;
 
-        new_id = new_id.toLowerCase();
-        new_id = new_id.replaceAll("[^a-z0-9\\-_.]", "");
-        new_id = new_id.replaceAll("\\.{2,}", ".");
-        new_id = new_id.replaceAll("^\\.|\\.$", "");
-        if (new_id.isEmpty()) {
-            new_id = "a";
+        answer = step1(answer);
+        answer = step2(answer);
+        answer = step3(answer);
+        answer = step4(answer);
+        answer = step5(answer);
+        answer = step6(answer);
+        answer = step7(answer);
+
+        return answer;
+    }
+
+    private String step1(String answer) {
+        return answer.toLowerCase();
+    }
+
+    private String step2(String answer) {
+        return answer.replaceAll("[^a-z0-9\\-_.]", "");
+    }
+
+    private String step3(String answer) {
+        return answer.replaceAll("\\.{2,}", ".");
+    }
+
+    private String step4(String answer) {
+        return answer.replaceAll("^\\.|\\.$", "");
+    }
+
+    private String step5(String answer) {
+        if (answer.isEmpty()) {
+            answer = "a";
         }
-        if (new_id.length() >= 16) {
-            new_id = new_id.substring(0,15);
-            new_id = new_id.replaceAll("\\.$", "");
+        return answer;
+    }
+
+    private String step6(String answer) {
+        if (answer.length() >= 16) {
+            answer = answer.substring(0,15);
+            answer = answer.replaceAll("\\.$", "");
         }
-        StringBuilder new_idBuilder = new StringBuilder(new_id);
-        while (new_idBuilder.length() <= 2) {
-            new_idBuilder.append(new_idBuilder.charAt(new_idBuilder.length() - 1));
+        return answer;
+    }
+
+    private String step7(String answer) {
+        StringBuilder stringBuilder = new StringBuilder(answer);
+        while (stringBuilder.length() <= 2) {
+            int indexOfLastCharacter = stringBuilder.length() - 1;
+            char lastCharacter = stringBuilder.charAt(indexOfLastCharacter);
+            stringBuilder.append(lastCharacter);
         }
-        new_id = new_idBuilder.toString();
-
-
-        System.out.println(new_id);
-        answer = new_id;
-
+        answer = stringBuilder.toString();
         return answer;
     }
 }
