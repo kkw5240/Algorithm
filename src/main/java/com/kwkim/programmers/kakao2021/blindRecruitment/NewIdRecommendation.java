@@ -1,61 +1,91 @@
 package main.java.com.kwkim.programmers.kakao2021.blindRecruitment;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/72410*/
 public class NewIdRecommendation {
     public String solution(String new_id) {
+
         String answer = new_id;
 
-        answer = step1(answer);
-        answer = step2(answer);
-        answer = step3(answer);
-        answer = step4(answer);
-        answer = step5(answer);
-        answer = step6(answer);
-        answer = step7(answer);
+        List<Recommendable> recommendSteps = new ArrayList<>(Arrays.asList(
+                new Step1(), new Step2(), new Step3(),
+                new Step4(), new Step5(), new Step6(),
+                new Step7()
+        ));
 
-        return answer;
-    }
-
-    private String step1(String answer) {
-        return answer.toLowerCase();
-    }
-
-    private String step2(String answer) {
-        return answer.replaceAll("[^a-z0-9\\-_.]", "");
-    }
-
-    private String step3(String answer) {
-        return answer.replaceAll("\\.{2,}", ".");
-    }
-
-    private String step4(String answer) {
-        return answer.replaceAll("^\\.|\\.$", "");
-    }
-
-    private String step5(String answer) {
-        if (answer.isEmpty()) {
-            answer = "a";
+        for (Recommendable recommendStep : recommendSteps) {
+            answer = recommendStep.recommend(answer);
         }
+
         return answer;
     }
+}
 
-    private String step6(String answer) {
-        if (answer.length() >= 16) {
-            answer = answer.substring(0,15);
-            answer = answer.replaceAll("\\.$", "");
+interface Recommendable {
+    String recommend(String id);
+}
+
+class Step1 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        return id.toLowerCase();
+    }
+}
+class Step2 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        return id.replaceAll("[^a-z0-9\\-_.]", "");
+    }
+}
+class Step3 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        return id.replaceAll("\\.{2,}", ".");
+    }
+}
+class Step4 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        return id.replaceAll("^\\.|\\.$", "");
+    }
+}
+class Step5 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        if (id.isEmpty()) {
+            id = "a";
         }
-        return answer;
+        return id;
     }
+}
+class Step6 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        if (id.length() >= 16) {
+            id = id.substring(0,15);
+            id = id.replaceAll("\\.$", "");
+        }
+        return id;
+    }
+}
+class Step7 implements Recommendable {
+    @Override
+    public String recommend(String id) {
+        StringBuilder stringBuilder = new StringBuilder(id);
 
-    private String step7(String answer) {
-        StringBuilder stringBuilder = new StringBuilder(answer);
         while (stringBuilder.length() <= 2) {
             int indexOfLastCharacter = stringBuilder.length() - 1;
             char lastCharacter = stringBuilder.charAt(indexOfLastCharacter);
+
             stringBuilder.append(lastCharacter);
         }
-        answer = stringBuilder.toString();
-        return answer;
+
+        id = stringBuilder.toString();
+
+        return id;
     }
 }
 
