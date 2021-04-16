@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.practice;
+package main.java.com.kwkim.programmers.practice;
 
 import main.java.com.kwkim.programmers.practice.SkillTree;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class SkillTreeTest {
     void doSolution() {
         SkillTree skillTree = new SkillTree();
 
-        assertAll("test",
+        assertAll("",
                 () -> assertEquals(2, skillTree.solution("CBD", new String[]{
                         "BACDE", "CBADF", "AECB", "BDA"
                 }))

@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.kakao2017;
+package main.java.com.kwkim.programmers.kakao2017;
 
 import main.java.com.kwkim.programmers.kakao2017.ColoringBook;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ class ColoringBookTest {
     void doSolution() {
         ColoringBook coloringBook = new ColoringBook();
 
-        assertAll("test",
+        assertAll("",
                 () -> assertArrayEquals(
                         new int[]{4, 5},
                         coloringBook.solution(6, 4,

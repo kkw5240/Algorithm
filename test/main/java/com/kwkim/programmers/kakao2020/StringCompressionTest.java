@@ -1,4 +1,4 @@
-package test.java.com.kwkim.programmers.kakao2020;
+package main.java.com.kwkim.programmers.kakao2020;
 
 import main.java.com.kwkim.programmers.kakao2020.StringCompression;
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,7 @@ class StringCompressionTest {
 
     @Test
     void doSolution() {
-        assertAll("test",
+        assertAll("",
                 () -> assertEquals(7, StringCompression.solution("aabbaccc")),
                 () -> assertEquals(9, StringCompression.solution("ababcdcdababcdcd")),
                 () -> assertEquals(8, StringCompression.solution("abcabcdede")),
