@@ -1,45 +1,59 @@
 package main.java.com.kwkim.programmers.challenges.april2021;
 
 import java.util.Stack;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /*https://programmers.co.kr/tryouts/23088/challenges*/
 public class CorrectString {
     public int solution(String s) {
         int answer = 0;
 
-        char[] array = s.toCharArray();
-        int length = array.length;
+        char[] charArray = s.toCharArray();
+        int length = charArray.length;
 
+        Stack<Character> bracket = new Stack<>();//()
+        Stack<Character> brace = new Stack<>();//{}
+        Stack<Character> squareBracket = new Stack<>();//[]
 
-
-
-        LinkedBlockingQueue<Character> characterList = new LinkedBlockingQueue<>();
-        for (char c : array) {
-            characterList.offer(c);
-        }
 
         for (int i = 0; i < length; i++) {
-
-            Character[] characters = characterList.toArray(size -> new Character[size]);
-
-            StringBuilder sb = new StringBuilder();
-            for (Character c : characters) {
-                sb.append(c);
-            }
-
-            String target = sb.toString();
-            if (!target.matches("\\[.*(?=])")) {
-                answer++;
-            }
-            System.out.println(target + " : " + !target.matches("(}.*[\\{\\}])|(\\).[*\\(\\)])|(].*[\\[\\]])\n")+" → " + answer);
-
-            char c = characterList.poll();
-            characterList.offer(c);
+            answer += validate(charArray, bracket, brace, squareBracket);
+            charArray = (String.valueOf(charArray, 1, length-1)+String.valueOf(charArray, 0, 1)).toCharArray();
         }
-        System.out.println("====================");
 
         return answer;
+    }
+
+    private int validate(char[] charArray, Stack<Character> bracket, Stack<Character> brace, Stack<Character> squareBracket) {
+        try {
+            for (char c : charArray) {
+                if (c == '[') {
+                    squareBracket.push(c);
+                }
+                if (c == ']') {
+                    squareBracket.pop();
+                }
+                if (c == '(') {
+                    bracket.push(c);
+                }
+                if (c == ')') {
+                    bracket.pop();
+                }
+                if (c == '{') {
+                    brace.push(c);
+                }
+                if (c == '}') {
+                    brace.pop();
+                }
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+
+        if (squareBracket.size() == 0 && bracket.size() == 0 && brace.size() == 0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }
 /*
