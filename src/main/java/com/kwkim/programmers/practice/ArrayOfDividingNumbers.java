@@ -1,9 +1,30 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/12910*/
 public class ArrayOfDividingNumbers {
     public int[] solution(int[] arr, int divisor) {
-        int[] answer = {};
+        List<Integer> answerList = new ArrayList<>();
+
+        for (int number : arr) {
+            if (number % divisor == 0) {
+                answerList.add(number);
+            }
+        }
+
+        int answerLength = answerList.size();
+        if (answerLength == 0) return new int[] { -1 };
+
+        answerList.sort(Comparator.comparingInt(a -> a));
+
+        int[] answer = new int[answerList.size()];
+        for (int i = 0; i < answerList.size(); i++) {
+            answer[i] = answerList.get(i);
+        }
+
         return answer;
     }
 }
