@@ -1,9 +1,24 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //https://programmers.co.kr/learn/courses/30/lessons/68935
 public class TernaryReversal {
     public int solution(int n) {
         int answer = 0;
+
+        List<Integer> ternaryList = new ArrayList<>();
+        int temp = n;
+        while(temp > 0) {
+            ternaryList.add(temp % 3);
+            temp /= 3;
+        }
+
+        for (int i = 0; i < ternaryList.size(); i++) {
+            answer += (int) (ternaryList.get(i) * Math.pow(3, ternaryList.size() - (i+1)));
+        }
+        System.out.println("===============");
         return answer;
     }
 }
