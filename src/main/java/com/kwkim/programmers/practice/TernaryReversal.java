@@ -18,7 +18,7 @@ public class TernaryReversal {
         for (int i = 0; i < ternaryList.size(); i++) {
             answer += (int) (ternaryList.get(i) * Math.pow(3, ternaryList.size() - (i+1)));
         }
-        System.out.println("===============");
+
         return answer;
     }
 }
