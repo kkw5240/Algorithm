@@ -1,7 +1,38 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Arrays;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42862?language=java*/
 public class GymSuit {
+    public int solution(int n, int[] lost, int[] reserve) {
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+
+        int answer = n - lost.length;
+
+        int[] students = new int[n];
+        Arrays.fill(students, 1);
+
+        for (int r : reserve) {
+            students[r-1]++;
+        }
+        for (int l : lost) {
+            students[l-1]--;
+        }
+
+        for (int lostStudent : lost) {
+            --lostStudent;
+            for (int i = 0; i < students.length; i++) {
+                if (i >= lostStudent && students[i] > 1) {
+                    answer++;
+                    students[i]--;
+                    break;
+                }
+            }
+        }
+
+        return answer;
+    }
 }
 /*
 문제 설명
