@@ -5,10 +5,7 @@ import java.util.Arrays;
 /*https://programmers.co.kr/learn/courses/30/lessons/42862?language=java*/
 public class GymSuit {
     public int solution(int n, int[] lost, int[] reserve) {
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
-
-        int answer = n - lost.length;
+        int answer = 0;
 
         int[] students = new int[n];
         Arrays.fill(students, 1);
@@ -33,23 +30,22 @@ public class GymSuit {
             nextStudent = Math.min(nextStudent, n-1);
 
             if (students[prevStudent] > 1) {
-                answer++;
                 students[prevStudent]--;
                 students[indexOfLostStudent]++;
                 continue;
             }
 
             if (students[nextStudent] > 1) {
-                answer++;
                 students[nextStudent]--;
                 students[indexOfLostStudent]++;
-                continue;
+                //continue;
             }
         }
 
         System.out.print(answer+" : ");
         for (int student : students) {
             System.out.print(student + " ");
+            if (student > 0) answer++;
         }
         System.out.println();
         System.out.println("=========================");
