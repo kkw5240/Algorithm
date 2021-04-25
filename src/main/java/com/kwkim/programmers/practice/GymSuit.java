@@ -20,16 +20,39 @@ public class GymSuit {
             students[l-1]--;
         }
 
+        for (int student : students) {
+            System.out.print(student + " ");
+        }
+        System.out.println();
+
         for (int lostStudent : lost) {
-            --lostStudent;
-            for (int i = 0; i < students.length; i++) {
-                if (i >= lostStudent && students[i] > 1) {
-                    answer++;
-                    students[i]--;
-                    break;
-                }
+            int indexOfLostStudent = lostStudent - 1;
+            int prevStudent = indexOfLostStudent - 1;
+            int nextStudent = indexOfLostStudent + 1;
+            prevStudent = Math.max(prevStudent, 0);
+            nextStudent = Math.min(nextStudent, n-1);
+
+            if (students[prevStudent] > 1) {
+                answer++;
+                students[prevStudent]--;
+                students[indexOfLostStudent]++;
+                continue;
+            }
+
+            if (students[nextStudent] > 1) {
+                answer++;
+                students[nextStudent]--;
+                students[indexOfLostStudent]++;
+                continue;
             }
         }
+
+        System.out.print(answer+" : ");
+        for (int student : students) {
+            System.out.print(student + " ");
+        }
+        System.out.println();
+        System.out.println("=========================");
 
         return answer;
     }

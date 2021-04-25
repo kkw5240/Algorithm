@@ -34,6 +34,14 @@ class GymSuitTest {
                                 new int[]{ 3 },
                                 new int[]{ 1 }
                         )
+                ),
+                () -> assertEquals(
+                        2,
+                        gymSuit.solution(
+                                3,
+                                new int[]{ 1, 2 },
+                                new int[]{ 3 }
+                        )
                 )
         );
     }
