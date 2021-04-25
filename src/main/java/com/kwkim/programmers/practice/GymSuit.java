@@ -5,7 +5,8 @@ import java.util.Arrays;
 /*https://programmers.co.kr/learn/courses/30/lessons/42862?language=java*/
 public class GymSuit {
     public int solution(int n, int[] lost, int[] reserve) {
-        int answer = 0;
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
 
         int[] students = new int[n];
         Arrays.fill(students, 1);
@@ -17,38 +18,29 @@ public class GymSuit {
             students[l-1]--;
         }
 
-        for (int student : students) {
-            System.out.print(student + " ");
-        }
-        System.out.println();
+        for (int i = 0; i < students.length; i++) {
+            int student = students[i];
+            int prev = i - 1;
+            int next = i + 1;
+            prev = Math.max(prev, 0);
+            next = Math.min(next, n-1);
 
-        for (int lostStudent : lost) {
-            int indexOfLostStudent = lostStudent - 1;
-            int prevStudent = indexOfLostStudent - 1;
-            int nextStudent = indexOfLostStudent + 1;
-            prevStudent = Math.max(prevStudent, 0);
-            nextStudent = Math.min(nextStudent, n-1);
+            if (student > 0) continue;
 
-            if (students[prevStudent] > 1) {
-                students[prevStudent]--;
-                students[indexOfLostStudent]++;
-                continue;
+            if (students[prev] > 1) {
+                students[prev]--;
+                students[i]++;
+            } else if (students[next] > 1) {
+                students[next]--;
+                students[i]++;
             }
 
-            if (students[nextStudent] > 1) {
-                students[nextStudent]--;
-                students[indexOfLostStudent]++;
-                //continue;
-            }
         }
 
-        System.out.print(answer+" : ");
+        int answer = 0;
         for (int student : students) {
-            System.out.print(student + " ");
             if (student > 0) answer++;
         }
-        System.out.println();
-        System.out.println("=========================");
 
         return answer;
     }
