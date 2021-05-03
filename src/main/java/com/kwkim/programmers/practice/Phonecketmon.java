@@ -1,9 +1,23 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/1845*/
 public class Phonecketmon {
     public int solution(int[] nums) {
         int answer = 0;
+
+        Set<Integer> ballSet = new HashSet<>();
+        for (Integer num : nums) {
+            if (ballSet.size() >= nums.length/2) break;
+
+            if (!ballSet.contains(num)) {
+                ballSet.add(num);
+                answer++;
+            }
+        }
+
         return answer;
     }
 }
