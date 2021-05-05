@@ -1,9 +1,5 @@
 package main.java.com.kwkim.programmers.practice;
 
-import org.h2.util.StringUtils;
-
-import java.util.List;
-
 /*https://programmers.co.kr/learn/courses/30/lessons/17681*/
 public class SecretMap {
     public String[] solution(int n, int[] arr1, int[] arr2) {
@@ -13,8 +9,8 @@ public class SecretMap {
             String number1 = Integer.toBinaryString(arr1[i]);
             String number2 = Integer.toBinaryString(arr2[i]);
 
-            number1 = StringUtils.pad(number1, n, "0", false);
-            number2 = StringUtils.pad(number2, n, "0", false);
+            number1 = String.format("%"+n+"s", number1);
+            number2 = String.format("%"+n+"s", number2);
 
             char[] characterArray1 = number1.toCharArray();
             char[] characterArray2 = number2.toCharArray();
