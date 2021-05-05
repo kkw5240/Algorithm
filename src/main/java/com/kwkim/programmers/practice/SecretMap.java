@@ -5,12 +5,14 @@ public class SecretMap {
     public String[] solution(int n, int[] arr1, int[] arr2) {
         String[] answer = new String[n];
 
+        String padFormat = "%"+n+"s";
+
         for (int i = 0; i < n; i++) {
             String number1 = Integer.toBinaryString(arr1[i]);
             String number2 = Integer.toBinaryString(arr2[i]);
 
-            number1 = String.format("%"+n+"s", number1);
-            number2 = String.format("%"+n+"s", number2);
+            number1 = String.format(padFormat, number1);
+            number2 = String.format(padFormat, number2);
 
             char[] characterArray1 = number1.toCharArray();
             char[] characterArray2 = number2.toCharArray();
