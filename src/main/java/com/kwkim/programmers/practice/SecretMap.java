@@ -1,9 +1,35 @@
 package main.java.com.kwkim.programmers.practice;
 
+import org.h2.util.StringUtils;
+
+import java.util.List;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/17681*/
 public class SecretMap {
     public String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = {};
+        String[] answer = new String[n];
+
+        for (int i = 0; i < n; i++) {
+            String number1 = Integer.toBinaryString(arr1[i]);
+            String number2 = Integer.toBinaryString(arr2[i]);
+
+            number1 = StringUtils.pad(number1, n, "0", false);
+            number2 = StringUtils.pad(number2, n, "0", false);
+
+            char[] characterArray1 = number1.toCharArray();
+            char[] characterArray2 = number2.toCharArray();
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j = 0; j < n; j++) {
+                char point = ' ';
+                if (characterArray1[j] == '1' || characterArray2[j] == '1') {
+                    point = '#';
+                }
+                stringBuilder.append(point);
+            }
+            answer[i] = stringBuilder.toString();
+        }
+
         return answer;
     }
 }
