@@ -1,9 +1,20 @@
 package main.java.com.kwkim.programmers.practice;
 
+import java.util.Arrays;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/12982*/
 public class Budget {
     public int solution(int[] d, int budget) {
         int answer = 0;
+
+        Arrays.sort(d);
+        for (Integer n : d) {
+            if (budget - n >= 0) {
+                answer++;
+                budget -= n;
+            }
+        }
+
         return answer;
     }
 }
