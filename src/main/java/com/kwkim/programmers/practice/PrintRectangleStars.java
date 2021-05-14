@@ -9,7 +9,16 @@ public class PrintRectangleStars {
         int a = sc.nextInt();
         int b = sc.nextInt();
 
-        System.out.println(a + b);
+        solution(a, b);
+    }
+
+    private static void solution(int n, int m) {
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
     }
 }
 /*
