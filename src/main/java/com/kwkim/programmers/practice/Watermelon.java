@@ -4,6 +4,16 @@ package main.java.com.kwkim.programmers.practice;
 public class Watermelon {
     public String solution(int n) {
         String answer = "";
+
+        String[] watermelon = new String[] { "수", "박" };
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i=0; i<n; i++) {
+            stringBuilder.append(watermelon[i % 2]);
+        }
+
+        answer = stringBuilder.toString();
+
         return answer;
     }
 }
