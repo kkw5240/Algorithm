@@ -3,8 +3,7 @@ package main.java.com.kwkim.programmers.practice;
 /*https://programmers.co.kr/learn/courses/30/lessons/12918*/
 public class StringHandlingBasics {
     public boolean solution(String s) {
-        boolean answer = true;
-        return answer;
+        return s.matches("[0-9]{4}|[0-9]{6}");
     }
 }
 /*
