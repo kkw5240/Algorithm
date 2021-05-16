@@ -3,8 +3,17 @@ package main.java.com.kwkim.programmers.practice;
 /*https://programmers.co.kr/learn/courses/30/lessons/12947*/
 public class HarshadNumber {
     public boolean solution(int x) {
-        boolean answer = true;
-        return answer;
+        int sum = getSum(x);
+        return x % sum == 0;
+    }
+
+    private Integer getSum(int x) {
+        int sum = 0;
+        while(x != 0) {
+            sum += x % 10;
+            x /= 10;
+        }
+        return sum;
     }
 }
 /*
