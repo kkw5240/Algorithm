@@ -27,7 +27,16 @@ public class FailureRate {
 
         List<Stage> stageList = new ArrayList<>();
         for (int i = 0; i < N; i++) {
-            stageList.add(new Stage(i+1, (double) nonClear[i] / challenge[i]));
+            int id = i+1;
+            double failure;
+
+            if (challenge[i] == 0) {
+                failure = 0.0d;
+            } else {
+                failure = (double) nonClear[i] / challenge[i];
+            }
+
+            stageList.add(new Stage(id, failure));
         }
 
         stageList.sort(Stage::compareTo);
