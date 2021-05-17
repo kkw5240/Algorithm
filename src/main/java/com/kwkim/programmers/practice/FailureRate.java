@@ -1,10 +1,60 @@
 package main.java.com.kwkim.programmers.practice;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*https://programmers.co.kr/learn/courses/30/lessons/42889*/
 public class FailureRate {
     public int[] solution(int N, int[] stages) {
-        int[] answer = {};
+        int[] answer;
+
+        int[] nonClear = new int[N+1];
+        int[] challenge = new int[N+1];
+
+        for (int stage : stages) {
+            for (int i = stage-1; i >= 0; i--) {
+                challenge[i]++;
+                if (i == stage-1) {
+                    nonClear[i]++;
+                }
+            }
+        }
+
+        List<Stage> stageList = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            stageList.add(new Stage(i+1, (double) nonClear[i] / challenge[i]));
+        }
+
+        stageList.sort(Stage::compareTo);
+
+        answer = stageList.stream()
+                .mapToInt(Stage::getId)
+                .toArray();
+
         return answer;
+    }
+
+    @Getter
+    @Setter
+    @ToString
+    @RequiredArgsConstructor
+    public static class Stage implements Comparable<Stage> {
+        private final Integer id;
+        private final Double failure;
+
+        @Override
+        public int compareTo(Stage o) {
+            if (this.failure.equals(o.failure)) {
+                return this.id < o.getId() ? -1 : 1;
+            } else {
+                return this.failure > o.getFailure() ? -1 : 1;
+            }
+        }
     }
 }
 /*
@@ -33,28 +83,31 @@ public class FailureRate {
     스테이지에 도달한 유저가 없는 경우 해당 스테이지의 실패율은 0 으로 정의한다.
 
 입출력 예
-N	stages	result
-5	[2, 1, 2, 6, 2, 4, 3, 3]	[3,4,2,1,5]
-4	[4,4,4,4,4]	[4,1,2,3]
+    N	stages	                    result
+    5	[2, 1, 2, 6, 2, 4, 3, 3]	[3,4,2,1,5]
+    4	[4,4,4,4,4]	                [4,1,2,3]
+
 입출력 예 설명
-입출력 예 #1
-1번 스테이지에는 총 8명의 사용자가 도전했으며, 이 중 1명의 사용자가 아직 클리어하지 못했다. 따라서 1번 스테이지의 실패율은 다음과 같다.
+    입출력 예 #1
+        1번 스테이지에는 총 8명의 사용자가 도전했으며, 이 중 1명의 사용자가 아직 클리어하지 못했다.
+        따라서 1번 스테이지의 실패율은 다음과 같다.
+        1 번 스테이지 실패율 : 1/8
 
-1 번 스테이지 실패율 : 1/8
-2번 스테이지에는 총 7명의 사용자가 도전했으며, 이 중 3명의 사용자가 아직 클리어하지 못했다. 따라서 2번 스테이지의 실패율은 다음과 같다.
+        2번 스테이지에는 총 7명의 사용자가 도전했으며, 이 중 3명의 사용자가 아직 클리어하지 못했다.
+        따라서 2번 스테이지의 실패율은 다음과 같다.
+        2 번 스테이지 실패율 : 3/7
 
-2 번 스테이지 실패율 : 3/7
-마찬가지로 나머지 스테이지의 실패율은 다음과 같다.
+        마찬가지로 나머지 스테이지의 실패율은 다음과 같다.
 
-3 번 스테이지 실패율 : 2/4
-4번 스테이지 실패율 : 1/2
-5번 스테이지 실패율 : 0/1
-각 스테이지의 번호를 실패율의 내림차순으로 정렬하면 다음과 같다.
+        3 번 스테이지 실패율 : 2/4
+        4번 스테이지 실패율 : 1/2
+        5번 스테이지 실패율 : 0/1
+        각 스테이지의 번호를 실패율의 내림차순으로 정렬하면 다음과 같다.
 
-[3,4,2,1,5]
-입출력 예 #2
+        [3,4,2,1,5]
 
-모든 사용자가 마지막 스테이지에 있으므로 4번 스테이지의 실패율은 1이며 나머지 스테이지의 실패율은 0이다.
+    입출력 예 #2
+        모든 사용자가 마지막 스테이지에 있으므로 4번 스테이지의 실패율은 1이며 나머지 스테이지의 실패율은 0이다.
 
-[4,1,2,3]
+        [4,1,2,3]
 */
