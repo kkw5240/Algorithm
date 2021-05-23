@@ -5,7 +5,7 @@ public class CreateWeirdCharacters {
     public String solution(String s) {
         String answer;
 
-        String[] words = s.split(" ");
+        String[] words = s.split(" ", -1);
         for (int i = 0; i < words.length; i++) {
             char[] chars = words[i].toCharArray();
             for (int j = 0; j < chars.length; j++) {
