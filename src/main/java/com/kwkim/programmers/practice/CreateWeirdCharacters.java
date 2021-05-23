@@ -3,7 +3,23 @@ package main.java.com.kwkim.programmers.practice;
 /*https://programmers.co.kr/learn/courses/30/lessons/12930*/
 public class CreateWeirdCharacters {
     public String solution(String s) {
-        String answer = "";
+        String answer;
+
+        String[] words = s.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            char[] chars = words[i].toCharArray();
+            for (int j = 0; j < chars.length; j++) {
+                if (j % 2 == 0) {
+                    chars[j] = Character.toUpperCase(chars[j]);
+                } else {
+                    chars[j] = Character.toLowerCase(chars[j]);
+                }
+            }
+            words[i] = new String(chars);
+        }
+
+        answer = String.join(" ", words);
+
         return answer;
     }
 }
