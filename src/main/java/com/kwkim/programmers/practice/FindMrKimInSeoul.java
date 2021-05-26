@@ -1,13 +1,10 @@
 package main.java.com.kwkim.programmers.practice;
 
-import java.util.Arrays;
-
 /*https://programmers.co.kr/learn/courses/30/lessons/12919*/
 public class FindMrKimInSeoul {
     public String solution(String[] seoul) {
         String answer = "";
 
-        Arrays.stream(seoul).anyMatch(person -> "Kim".equals(person));
         for (int i = 0; i < seoul.length; i++) {
             if ("Kim".equals(seoul[i])) {
                 answer = "김서방은 " + i + "에 있다";
