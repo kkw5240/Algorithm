@@ -4,6 +4,12 @@ package main.java.com.kwkim.programmers.practice;
 public class IntegerSquareRootDiscrimination {
     public long solution(long n) {
         long answer = 0;
+
+        double sqrt = Math.sqrt(n);
+        int sqrt2 = (int) sqrt;
+
+        answer = sqrt - sqrt2 == 0 ? (long) ((sqrt + 1) * (sqrt + 1)) : -1;
+
         return answer;
     }
 }
