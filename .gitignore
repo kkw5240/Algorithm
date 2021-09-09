@@ -1,2 +1,11 @@
 # Project exclude paths
 /out/
+/Algorithm.iml
+/.idea/compiler.xml
+/.idea/description.html
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/libraries/org_projectlombok_lombok_1_18_10.xml
+/.idea/project-template.xml
+/.idea/vcs.xml
