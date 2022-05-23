@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.practice;
+package com.kwkim.programmers.practice;
 
 /*https://programmers.co.kr/learn/courses/30/lessons/12919*/
 public class FindMrKimInSeoul {

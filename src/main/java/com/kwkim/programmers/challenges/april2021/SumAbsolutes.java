@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.challenges.april2021;
+package com.kwkim.programmers.challenges.april2021;
 
 /*https://programmers.co.kr/tryouts/23088/challenges*/
 public class SumAbsolutes {

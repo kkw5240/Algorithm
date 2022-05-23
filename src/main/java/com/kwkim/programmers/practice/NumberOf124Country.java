@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.practice;
+package com.kwkim.programmers.practice;
 
 public class NumberOf124Country {
     public String solution(int n) {

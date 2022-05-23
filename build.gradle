@@ -2,25 +2,51 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'java'
+
 group 'com.kwkim'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 15
 targetCompatibility = 15
 
+compileJava.options.encoding = "UTF-8"
+
 repositories {
+    google()
     mavenCentral()
 }
-sourceSets {
+
+/*sourceSets {
     main {
         java {
             srcDirs = ['src']
         }
     }
-}
-dependencies {
-    implementation 'junit:junit:4.13.2'
-    implementation 'org.projectlombok:lombok:1.18.24'
+}*/
 
+dependencies {
+
+    implementation "org.projectlombok:lombok:1.18.24"
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
     testImplementation 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task printSourceSetInformation(){
+    doLast{
+        sourceSets.each { srcSet ->
+            println "["+srcSet.name+"]"
+            print "-->Source directories: "+srcSet.allJava.srcDirs+"\n"
+            print "-->Output directories: "+srcSet.output.classesDirs.files+"\n"
+            println ""
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.practice;
+package com.kwkim.programmers.practice;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

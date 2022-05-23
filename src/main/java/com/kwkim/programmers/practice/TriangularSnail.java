@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.practice;
+package com.kwkim.programmers.practice;
 
 public class TriangularSnail {
     public int[] solution(int n) {

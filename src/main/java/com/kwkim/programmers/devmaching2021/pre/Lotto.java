@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.devmaching2021.pre;
+package com.kwkim.programmers.devmaching2021.pre;
 
 import java.util.HashSet;
 import java.util.Set;

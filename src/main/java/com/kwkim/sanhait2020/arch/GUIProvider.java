@@ -1,4 +1,4 @@
-package main.java.com.kwkim.sanhait2020.arch;
+package com.kwkim.sanhait2020.arch;
 
 public class GUIProvider {
     public GUIFactory create(String buttonType) throws Exception {

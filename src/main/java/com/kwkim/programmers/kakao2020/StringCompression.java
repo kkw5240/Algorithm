@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.kakao2020;
+package com.kwkim.programmers.kakao2020;
 
 public class StringCompression {
     public static int solution(String s) {

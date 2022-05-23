@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.kakao2018;
+package com.kwkim.programmers.kakao2018;
 
 public class ThanksGivingTraffic {
     public int solution(String[] lines) {

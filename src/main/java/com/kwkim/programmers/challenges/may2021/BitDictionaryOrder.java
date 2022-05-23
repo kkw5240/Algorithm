@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.challenges.may2021;
+package com.kwkim.programmers.challenges.may2021;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

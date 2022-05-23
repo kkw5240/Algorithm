@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.kakao2017;
+package com.kwkim.programmers.kakao2017;
 
 import lombok.Getter;
 

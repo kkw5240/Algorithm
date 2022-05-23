@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.challenges.september2021;
+package com.kwkim.programmers.challenges.september2021;
 
 /*https://programmers.co.kr/tryouts/27706/challenges*/
 public class CircularGrid {

@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.kakao2020.mobility;
+package com.kwkim.programmers.kakao2020.mobility;
 
 import java.util.regex.Pattern;
 

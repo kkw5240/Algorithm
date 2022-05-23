@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.challenges.september2021;
+package com.kwkim.programmers.challenges.september2021;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;

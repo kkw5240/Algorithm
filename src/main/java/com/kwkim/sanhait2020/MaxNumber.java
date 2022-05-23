@@ -1,4 +1,4 @@
-package main.java.com.kwkim.sanhait2020;
+package com.kwkim.sanhait2020;
 
 public class MaxNumber {
     public String solution(int[] numbers) {

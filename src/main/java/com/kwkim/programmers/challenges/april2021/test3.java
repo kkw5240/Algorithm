@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.challenges.april2021;
+package com.kwkim.programmers.challenges.april2021;
 
 public class test3 {
 }

@@ -1,4 +1,4 @@
-package main.java.com.kwkim.programmers.kakao2021.blindRecruitment;
+package com.kwkim.programmers.kakao2021.blindRecruitment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
