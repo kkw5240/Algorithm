@@ -1,7 +1,6 @@
 package com.kwkim.programmers.practice;
 
 
-import main.java.com.kwkim.programmers.practice.NumberOf124Country;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -11,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NumberOf124CountryTest {
 
     String solution(int n) {
-        String[] ns = { "1", "2", "4", "11", "12", "14", "21", "22", "24" };
+        String[] ns = {"1", "2", "4", "11", "12", "14", "21", "22", "24"};
 
         if (n < 10) {
-            return ns[n-1];
+            return ns[n - 1];
         }
 
-        return solution((n-1)/3) + ns[(n-1)%3];
+        return solution((n - 1) / 3) + ns[(n - 1) % 3];
     }
 
     @Test

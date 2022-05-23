@@ -1,6 +1,5 @@
 package com.kwkim.programmers.practice;
 
-import main.java.com.kwkim.programmers.practice.StockPrice;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;

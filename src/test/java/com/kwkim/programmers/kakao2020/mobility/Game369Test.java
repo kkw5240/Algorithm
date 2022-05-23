@@ -1,9 +1,9 @@
 package com.kwkim.programmers.kakao2020.mobility;
 
-import main.java.com.kwkim.programmers.kakao2020.mobility.Game369;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Game369Test {
     @Test

@@ -1,9 +1,10 @@
 package com.kwkim.programmers.kakao2020.mobility;
 
-import main.java.com.kwkim.programmers.kakao2020.mobility.FriendRecommend;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FriendRecommendTest {
     @Test
@@ -11,7 +12,7 @@ class FriendRecommendTest {
         FriendRecommend fr = new FriendRecommend();
 
         assertAll("",
-                () -> assertEquals(new String[]{"james"},
+                () -> assertArrayEquals(new String[]{"james"},
                         fr.solution(
                                 new String[][]{
                                         {"david", "frank"},
@@ -22,7 +23,7 @@ class FriendRecommendTest {
                                 },
                                 "david"
                         )),
-                () -> assertEquals(new String[]{"david","james"},
+                () -> assertArrayEquals(new String[]{"david", "james"},
                         fr.solution(
                                 new String[][]{
                                         {"david", "demi"},

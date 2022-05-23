@@ -1,6 +1,5 @@
 package com.kwkim.programmers.kakao2020;
 
-import main.java.com.kwkim.programmers.kakao2020.StringCompression;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -20,14 +19,14 @@ class StringCompressionTest {
         String compressedWord;
         int counter;
 
-        for (int i=1; i<=mid; i++) {
+        for (int i = 1; i <= mid; i++) {
             counter = 1;
             compressedString = new StringBuilder();
             currString = "";
             prevString = "";
 
-            for (int j=0; j<length; j+=i) {
-                currString = s.substring(j, Math.min(i+j, length));
+            for (int j = 0; j < length; j += i) {
+                currString = s.substring(j, Math.min(i + j, length));
                 if (currString.equals(prevString)) {
                     counter++;
                     continue;

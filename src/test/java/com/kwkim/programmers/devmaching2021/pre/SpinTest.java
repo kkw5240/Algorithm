@@ -1,9 +1,9 @@
 package com.kwkim.programmers.devmaching2021.pre;
 
-import main.java.com.kwkim.programmers.devmaching2021.pre.Spin;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class SpinTest {
 
@@ -13,10 +13,10 @@ class SpinTest {
 
         assertAll(
                 () -> assertArrayEquals(
-                        new int[]{ 8, 10, 25 },
+                        new int[]{8, 10, 25},
                         spin.solution(
                                 6, 6,
-                                new int[][]{{2,2,5,4},{3,3,6,6},{5,1,6,3}}
+                                new int[][]{{2, 2, 5, 4}, {3, 3, 6, 6}, {5, 1, 6, 3}}
                         )
                 )/*, () -> assertArrayEquals(
                         new int[]{ 1, 1, 5, 3 },
