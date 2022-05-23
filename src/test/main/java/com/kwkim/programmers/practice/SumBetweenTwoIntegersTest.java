@@ -1,5 +1,6 @@
 package main.java.com.kwkim.programmers.practice;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class SumBetweenTwoIntegersTest {
 
+    @SneakyThrows
     @Test
     void solution() {
         SumBetweenTwoIntegers sumBetweenTwoIntegers = new SumBetweenTwoIntegers();

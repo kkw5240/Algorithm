@@ -1,5 +1,6 @@
 package main.java.com.kwkim.programmers.devmaching2021.pre;
 
+
 public class Spin {
     public int[] solution(int rows, int columns, int[][] queries) {
         int[] answer = {};
@@ -30,20 +31,12 @@ public class Spin {
 
                 DIRECTIONS directions = getDirections(width, height, i);
                 switch (directions) {
-                    case RIGHT:
-                        tx++;
-                        break;
-                    case DOWN:
-                        ty++;
-                        break;
-                    case LEFT:
-                        tx--;
-                        break;
-                    case UP:
-                        ty--;
-                        break;
-                    default:
-                        break;
+                    case RIGHT -> tx++;
+                    case DOWN -> ty++;
+                    case LEFT -> tx--;
+                    case UP -> ty--;
+                    default -> {
+                    }
                 }
             }
 

@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.kwkim'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 15
+targetCompatibility = 15
+
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+dependencies {
+    implementation 'junit:junit:4.13.2'
+    implementation 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'org.projectlombok:lombok:1.18.24'
+}
