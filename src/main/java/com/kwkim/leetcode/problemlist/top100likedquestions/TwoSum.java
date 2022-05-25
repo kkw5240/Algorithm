@@ -7,7 +7,7 @@ public class TwoSum {
     private final int[] nums;
     private final int target;
 
-    public TwoSum(int[] nums, int target) {
+    private TwoSum(int[] nums, int target) {
         this.nums = nums;
         this.target = target;
     }
