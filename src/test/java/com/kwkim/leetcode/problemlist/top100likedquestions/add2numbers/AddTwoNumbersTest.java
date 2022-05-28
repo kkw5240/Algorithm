@@ -110,4 +110,33 @@ class AddTwoNumbersTest {
                 () -> assertEquals(expected.next.next.next.next.next.next.next.val, actual.next.next.next.next.next.next.next.val)
         );
     }
+
+    @Test
+    @DisplayName("[9] & [1,9] → [1]")
+    void example4() {
+        ListNode expected = new ListNode(1);
+        ListNode actual = AddTwoNumbers.solution(
+                MyListNodeBuilder.build(new int[]{9}),
+                MyListNodeBuilder.build(new int[]{1, 9})
+        );
+
+        assertAll(
+                () -> assertEquals(expected.val, actual.val),
+                () -> assertEquals(expected.next, actual.next)
+        );
+    }
+    @Test
+    @DisplayName("[5, 6] & [5, 4, 9] → [0, 1, 0, 1]")
+    void example5() {
+        ListNode expected =  MyListNodeBuilder.build(new int[]{0, 1, 0, 1});
+        ListNode actual = AddTwoNumbers.solution(
+                MyListNodeBuilder.build(new int[]{5, 6}),
+                MyListNodeBuilder.build(new int[]{5, 4, 9})
+        );
+
+        assertAll(
+                () -> assertEquals(expected.val, actual.val),
+                () -> assertEquals(expected.next, actual.next)
+        );
+    }
 }

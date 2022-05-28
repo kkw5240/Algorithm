@@ -6,12 +6,19 @@ public class AddTwoNumbers {
                 getNumberFromListNode(l1) + getNumberFromListNode(l2)
         ).split("");
 
-        int[] result = new int[s.length];
+        String[] result = new String[s.length];
         for (int i = 0; i < s.length; i++) {
-            result[s.length - 1 - i] = Integer.parseInt(s[i]);
+            result[s.length - 1 - i] = s[i];
         }
 
-        return MyListNodeBuilder.build(result)
+        int result2 = Integer.parseInt(String.join("", result));
+        String[] result3 = String.valueOf(result2).split("");
+        int[] result4 = new int[result3.length];
+        for (int i = 0; i < result4.length; i++) {
+            result4[i] = Integer.parseInt(result3[i]);
+        }
+
+        return MyListNodeBuilder.build(result4)
                 .toListNode();
     }
 
