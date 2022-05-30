@@ -1,21 +1,17 @@
 package com.kwkim.leetcode.problemlist.top100likedquestions.add2numbers;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class MyListNodeBuilder {
 
-    public static MyListNode build(int[] numbers) {
-        if (numbers.length == 1) {
-            return new MyListNode(numbers[0]);
+    public static MyListNode build(List<Integer> numbers) {
+        if (numbers.size() == 1) {
+            return new MyListNode(numbers.get(0));
         }
 
         return new MyListNode(
-                numbers[0],
-                build(Arrays.copyOfRange(
-                        numbers,
-                        1,
-                        numbers.length
-                ))
+                numbers.get(0),
+                build(numbers.subList(1, numbers.size()))
         );
     }
 }

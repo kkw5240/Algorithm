@@ -3,6 +3,8 @@ package com.kwkim.leetcode.problemlist.top100likedquestions.add2numbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,10 +40,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[2] & [5] → [7]")
     void example0() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{7});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(7));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{2}),
-                MyListNodeBuilder.build(new int[]{5})
+                MyListNodeBuilder.build(Arrays.asList(2)),
+                MyListNodeBuilder.build(Arrays.asList(5))
         );
 
         assertEquals(expected.val, actual.val);
@@ -50,10 +52,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[21] & [5] → [71]")
     void example0_1() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{7, 1});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(7, 1));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{2, 1}),
-                MyListNodeBuilder.build(new int[]{5})
+                MyListNodeBuilder.build(Arrays.asList(2, 1)),
+                MyListNodeBuilder.build(Arrays.asList(5))
         );
 
         assertAll(
@@ -65,10 +67,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[2,4,3] & [5,6,4] → [7,0,8]")
     void example1() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{7, 0, 8});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(7, 0, 8));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{2, 4, 3}),
-                MyListNodeBuilder.build(new int[]{5, 6, 4})
+                MyListNodeBuilder.build(Arrays.asList(2, 4, 3)),
+                MyListNodeBuilder.build(Arrays.asList(5, 6, 4))
         );
 
         assertAll(
@@ -114,10 +116,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[9] & [1,9] → [1]")
     void example4() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{0, 0, 1});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(0, 0, 1));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{9}),
-                MyListNodeBuilder.build(new int[]{1, 9})
+                MyListNodeBuilder.build(Arrays.asList(9)),
+                MyListNodeBuilder.build(Arrays.asList(1, 9))
         );
 
         assertAll(
@@ -129,10 +131,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[5, 6] & [5, 4, 9] → [0, 1, 0, 1]")
     void example5() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{0, 1, 0, 1});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(0, 1, 0, 1));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{5, 6}),
-                MyListNodeBuilder.build(new int[]{5, 4, 9})
+                MyListNodeBuilder.build(Arrays.asList(5, 6)),
+                MyListNodeBuilder.build(Arrays.asList(5, 4, 9))
         );
 
         assertAll(
@@ -144,10 +146,10 @@ class AddTwoNumbersTest {
     @Test
     @DisplayName("[9] & [1,9,9,9,9,9,9,9,9,9] → [0,0,0,0,0,0,0,0,0,0,1]")
     void example6() {
-        ListNode expected = MyListNodeBuilder.build(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1});
+        ListNode expected = MyListNodeBuilder.build(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1));
         ListNode actual = AddTwoNumbers.solution(
-                MyListNodeBuilder.build(new int[]{9}),
-                MyListNodeBuilder.build(new int[]{1, 9, 9, 9, 9, 9, 9, 9, 9, 9})
+                MyListNodeBuilder.build(Arrays.asList(9)),
+                MyListNodeBuilder.build(Arrays.asList(1, 9, 9, 9, 9, 9, 9, 9, 9, 9))
         );
 
         assertAll(
@@ -155,4 +157,4 @@ class AddTwoNumbersTest {
                 () -> assertEquals(expected.next, actual.next)
         );
     }
-    }
+}
