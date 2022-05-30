@@ -6,19 +6,7 @@ public class AddTwoNumbers {
                 getNumberFromListNode(l1) + getNumberFromListNode(l2)
         ).split("");
 
-        String[] result = new String[s.length];
-        for (int i = 0; i < s.length; i++) {
-            result[s.length - 1 - i] = s[i];
-        }
-
-        int result2 = Integer.parseInt(String.join("", result));
-        String[] result3 = String.valueOf(result2).split("");
-        int[] result4 = new int[result3.length];
-        for (int i = 0; i < result4.length; i++) {
-            result4[i] = Integer.parseInt(result3[i]);
-        }
-
-        return MyListNodeBuilder.build(result4)
+        return MyListNodeBuilder.build(getResult(s))
                 .toListNode();
     }
 
@@ -35,5 +23,13 @@ public class AddTwoNumbers {
         }
 
         return Integer.parseInt(sb1.toString());
+    }
+
+    private static int[] getResult(String[] s) {
+        int[] result = new int[s.length];
+        for (int i = 0; i < s.length; i++) {
+            result[s.length - 1 - i] = Integer.parseInt(s[i]);
+        }
+        return result;
     }
 }
