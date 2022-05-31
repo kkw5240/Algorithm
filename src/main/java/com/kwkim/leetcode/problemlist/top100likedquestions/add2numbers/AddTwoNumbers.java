@@ -13,17 +13,10 @@ public class AddTwoNumbers {
         int carry = 0;
         final int maxLength = Math.max(numbers1.length, numbers2.length);
         for (int i = 0; i < maxLength; i++) {
-            int num1 = 0;
-            if (numbers1.length > i) {
-                num1 = numbers1[i];
-            }
+            int x = getNumber(numbers1, i);
+            int y = getNumber(numbers2, i);
 
-            int num2 = 0;
-            if (numbers2.length > i) {
-                num2 = numbers2[i];
-            }
-
-            int temp = num1 + num2 + carry;
+            int temp = x + y + carry;
 
             carry = temp / 10;
             temp %= 10;
@@ -37,6 +30,14 @@ public class AddTwoNumbers {
 
         return MyListNodeBuilder.build(result)
                 .toListNode();
+    }
+
+    private static int getNumber(Integer[] numbers1, int i) {
+        int x = 0;
+        if (numbers1.length > i) {
+            x = numbers1[i];
+        }
+        return x;
     }
 
 
