@@ -1,5 +1,8 @@
 package com.kwkim.leetcode.problemlist.top100likedquestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 3. Longest Substring Without Repeating Characters
  * Medium
@@ -29,19 +32,19 @@ package com.kwkim.leetcode.problemlist.top100likedquestions;
  */
 public class LengthOfLongestSubstring {
     public static int solution(String s) {
-        return -1;
-    }
-
-    Boolean isRepeat(String chars, String key) {
-        int index = chars.indexOf(key) + 1;
-
-        if (chars.length() - 1 < index) {
-            index = chars.length() - 1;
+        List<String> result = new ArrayList<>();
+        char temp;
+        for (int i = 0; i < s.length(); i++) {
+            temp = s.charAt(i);
+            for (int j = i; j < s.length(); j++) {
+                if (temp == s.charAt(j)) {
+                    result.add(s.substring(i, j));
+                }
+                temp = s.charAt(j);
+            }
         }
+        result.forEach(System.out::println);
 
-        chars = chars.substring(index);
-        System.out.println(chars);
-
-        return chars.contains(key);
+        return -1;
     }
 }
