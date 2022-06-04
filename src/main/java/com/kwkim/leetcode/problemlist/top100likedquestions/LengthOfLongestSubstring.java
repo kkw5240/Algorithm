@@ -1,7 +1,7 @@
 package com.kwkim.leetcode.problemlist.top100likedquestions;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 3. Longest Substring Without Repeating Characters
@@ -32,19 +32,41 @@ import java.util.List;
  */
 public class LengthOfLongestSubstring {
     public static int solution(String s) {
-        List<String> result = new ArrayList<>();
-        char temp;
+        if (s.length() == 1) {
+            return 1;
+        }
+
+        Map<Integer, String> result = new HashMap<>();
+
         for (int i = 0; i < s.length(); i++) {
-            temp = s.charAt(i);
-            for (int j = i; j < s.length(); j++) {
-                if (temp == s.charAt(j)) {
-                    result.add(s.substring(i, j));
+            String subString = s.substring(i);
+
+            for (int j = 0; j < subString.length(); j++) {
+                char target = subString.charAt(j);
+
+                int index = subString.indexOf(target, j+1);
+
+                if (index == -1) {
+                    result.put(subString.length(), subString);
+                    break;
                 }
-                temp = s.charAt(j);
+
+                if (index > 0) {
+                    String r = subString.substring(0, index);
+                    result.put(r.length(), r);
+                    break;
+                }
+            }
+
+        }
+
+        int max = 0;
+        for (Integer candidate : result.keySet()) {
+            if (candidate > max) {
+                max = candidate;
             }
         }
-        result.forEach(System.out::println);
 
-        return -1;
+        return max;
     }
 }
