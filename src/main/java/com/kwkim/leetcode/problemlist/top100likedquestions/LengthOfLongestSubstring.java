@@ -31,42 +31,62 @@ import java.util.Map;
  * s consists of English letters, digits, symbols and spaces.
  */
 public class LengthOfLongestSubstring {
-    public static int solution(String s) {
+
+    private final Map<Character, Integer> characterMap = new HashMap<>();
+    private String substring;
+    private int max = 0;
+    private int offset = 0;
+
+    public int solution(String s) {
         if (s.length() == 1) {
             return 1;
         }
 
-        Map<Integer, String> result = new HashMap<>();
+        this.substring = s;
 
-        for (int i = 0; i < s.length(); i++) {
-            String subString = s.substring(i);
+        return findMaxLengthOfNoneRepeatedSubstring();
+    }
 
-            for (int j = 0; j < subString.length(); j++) {
-                char target = subString.charAt(j);
+    private int findMaxLengthOfNoneRepeatedSubstring() {
+        int length = substring.length();
 
-                int index = subString.indexOf(target, j+1);
+        for (int i = 0; i < length; i++) {
+            offset = calculateOffset(i);
 
-                if (index == -1) {
-                    result.put(subString.length(), subString);
-                    break;
-                }
+            putCharacterAt(i);
 
-                if (index > 0) {
-                    String r = subString.substring(0, index);
-                    result.put(r.length(), r);
-                    break;
-                }
-            }
-
-        }
-
-        int max = 0;
-        for (Integer candidate : result.keySet()) {
-            if (candidate > max) {
-                max = candidate;
-            }
+            max = getMaxLength(i);
         }
 
         return max;
     }
+
+    private Integer calculateOffset(int i) {
+        if (isRepeatCharacter(substring.charAt(i))) {
+            offset = characterMap.get(substring.charAt(i)) + 1;
+        }
+
+        return offset;
+    }
+
+    private boolean isRepeatCharacter(Character charecter) {
+        return isExistCharacter(charecter) && isIndexOfCharacterGreaterThenOffset(charecter);
+    }
+
+    private boolean isIndexOfCharacterGreaterThenOffset(Character target) {
+        return this.characterMap.get(target) >= offset;
+    }
+
+    private boolean isExistCharacter(Character target) {
+        return this.characterMap.get(target) != null;
+    }
+
+    private void putCharacterAt(int i) {
+        this.characterMap.put(substring.charAt(i), i);
+    }
+
+    private int getMaxLength(int i) {
+        return Math.max(max, i - offset + 1);
+    }
+
 }
