@@ -69,8 +69,8 @@ public class LengthOfLongestSubstring {
         return offset;
     }
 
-    private boolean isRepeatCharacter(Character charecter) {
-        return isExistCharacter(charecter) && isIndexOfCharacterGreaterThenOffset(charecter);
+    private boolean isRepeatCharacter(Character character) {
+        return isExistCharacter(character) && isIndexOfCharacterGreaterThenOffset(character);
     }
 
     private boolean isIndexOfCharacterGreaterThenOffset(Character target) {
