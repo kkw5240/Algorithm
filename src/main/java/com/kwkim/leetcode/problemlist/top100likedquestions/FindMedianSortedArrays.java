@@ -1,29 +1,38 @@
 package com.kwkim.leetcode.problemlist.top100likedquestions;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
- * 4. Median of Two Sorted Arrays
+ * <h1>4. Median of Two Sorted Arrays</h1>
  * Hard
  * <p>
  * Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
  * The overall run time complexity should be O(log (m+n)).
+ * </p>
  * <p>
- * Example 1:
+ * <h2>Example 1:</h2>
  * Input: nums1 = [1,3], nums2 = [2]
  * Output: 2.00000
  * Explanation: merged array = [1,2,3] and median is 2.
+ * </p>
  * <p>
- * Example 2:
+ * <h2>Example 2:</h2>
  * Input: nums1 = [1,2], nums2 = [3,4]
  * Output: 2.50000
  * Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+ * </p>
  * <p>
- * Constraints:
- * nums1.length == m
- * nums2.length == n
- * 0 <= m <= 1000
- * 0 <= n <= 1000
- * 1 <= m + n <= 2000
- * -10^6 <= nums1[i], nums2[i] <= 10^6
+ * <h2>Constraints:</h2>
+ * <ul>
+ * <li>nums1.length == m</li>
+ * <li>nums2.length == n</li>
+ * <li>0 <= m <= 1000</li>
+ * <li>0 <= n <= 1000</li>
+ * <li>1 <= m + n <= 2000</li>
+ * <li>-10^6 <= nums1[i], nums2[i] <= 10^6</li>
+ * </ul>
+ * </p>
  */
 public class FindMedianSortedArrays {
     public double solution(int[] nums1, int[] nums2) {
@@ -71,5 +80,49 @@ public class FindMedianSortedArrays {
 
     private boolean isEvenLength(int length) {
         return length % 2 == 0;
+    }
+}
+
+class Numbers {
+    private Integer[] numbers;
+    private final int length;
+    private int offset;
+
+    private Numbers(Integer[] numbers) {
+        this.numbers = numbers;
+        this.length = numbers.length;
+        this.offset = 0;
+    }
+    private Numbers(Integer[] numbers, int length) {
+        this.numbers = numbers;
+        this.length = length;
+        this.offset = 0;
+    }
+
+    public static Numbers of(int[] nums) {
+        Integer[] numbers = new Integer[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            numbers[i] = nums[i];
+        }
+        return new Numbers(numbers);
+    }
+    public static Numbers of(int[] nums, int length) {
+        Integer[] numbers = new Integer[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            numbers[i] = nums[i];
+        }
+        return new Numbers(numbers, length);
+    }
+
+    public Integer[] getNumbers() {
+        return this.numbers;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getOffset() {
+        return offset;
     }
 }
