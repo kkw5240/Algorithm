@@ -40,31 +40,39 @@ public class FindMedianSortedArrays {
     }
 
     protected Integer[] mergeAndSort(int[] nums1, int[] nums2) {
-        int m = nums1.length;
-        int n = nums2.length;
+        Numbers numbers1 = Numbers.of(nums1);
+        Numbers numbers2 = Numbers.of(nums2);
 
-        int offset1 = 0;
-        int offset2 = 0;
+        Numbers mergedNumbers = Numbers.of(
+                new int[]{},
+                numbers1.getLength() + numbers2.getLength()
+        );
 
-        Integer[] mergedNums = new Integer[m + n];
         int index = 0;
 
-        while (offset1 < m && offset2 < n) {
-            if (nums1[offset1] < nums2[offset2]) {
-                mergedNums[index++] = nums1[offset1++];
+        while (numbers1.isValidOffset() && numbers2.isValidOffset()) {
+            int number;
+            if (numbers1.getNumber() < numbers2.getNumber()) {
+                number = numbers1.getNumber();
+                numbers1.increaseOffset();
             } else {
-                mergedNums[index++] = nums2[offset2++];
+                number = numbers2.getNumber();
+                numbers2.increaseOffset();
             }
+            mergedNumbers.setNumber(number);
+            mergedNumbers.increaseOffset();
         }
 
-        for (int i = offset1; i < m; i++) {
-            mergedNums[index++] = nums1[i];
+        for (int i = numbers1.getOffset(); i < numbers1.getLength(); i++) {
+            mergedNumbers.setNumber(numbers1.getNumber(i));
+            numbers1.increaseOffset();
         }
-        for (int i = offset2; i < n; i++) {
-            mergedNums[index++] = nums2[i];
+        for (int i = numbers2.getOffset(); i < numbers2.getLength(); i++) {
+            mergedNumbers.setNumber(numbers2.getNumber(i));
+            numbers2.increaseOffset();
         }
 
-        return mergedNums;
+        return mergedNumbers.getNumbers();
     }
 
     protected Double getMedian(Integer[] nums) {
@@ -118,11 +126,32 @@ class Numbers {
         return this.numbers;
     }
 
+    public int getNumber(int index) {
+        return this.numbers[index];
+    }
+    public int getNumber() {
+        return getNumber(this.offset);
+    }
+
+    public void setNumber(Integer index, Integer number) {
+        this.numbers[index] = number;
+    }
+    public void setNumber(Integer number) {
+        this.setNumber(this.offset, number);
+    }
+
     public int getLength() {
         return length;
     }
 
     public int getOffset() {
         return offset;
+    }
+    public void increaseOffset() {
+        this.offset++;
+    }
+
+    public Boolean isValidOffset() {
+        return this.offset < this.length;
     }
 }
