@@ -1,4 +1,4 @@
-package com.kwkim.leetcode.problemlist.top100likedquestions;
+package com.kwkim.leetcode.problemlist.top100likedquestions.findmedian;
 
 import org.junit.jupiter.api.Test;
 
