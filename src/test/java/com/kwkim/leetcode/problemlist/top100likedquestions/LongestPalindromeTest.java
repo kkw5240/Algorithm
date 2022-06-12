@@ -10,19 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LongestPalindromeTest {
     @Test
     void getPrev1() {
-        assertEquals(Arrays.asList("a", "b"), new LongestPalindrome().getPrev("babad", 2));
+        assertEquals("ab", new LongestPalindrome().getPrev("babad", 2));
     }
     @Test
     void getPrev2() {
-        assertEquals(List.of("b"), new LongestPalindrome().getPrev("babad", 1));
+        assertEquals("b", new LongestPalindrome().getPrev("babad", 1));
     }
     @Test
     void getPost1() {
-        assertEquals(Arrays.asList("a", "d"), new LongestPalindrome().getPost("babad", 2));
+        assertEquals("ad", new LongestPalindrome().getPost("babad", 2));
     }
     @Test
     void getPost2() {
-        assertEquals(List.of("b", "a", "d"), new LongestPalindrome().getPost("babad", 1));
+        assertEquals("bad", new LongestPalindrome().getPost("babad", 1));
     }
 
     @Test
@@ -38,5 +38,9 @@ public class LongestPalindromeTest {
     @Test
     void example3() {
         assertEquals("b", new LongestPalindrome().solution("b"));
+    }
+    @Test
+    void example4() {
+        assertEquals("a", new LongestPalindrome().solution("ac"));
     }
 }

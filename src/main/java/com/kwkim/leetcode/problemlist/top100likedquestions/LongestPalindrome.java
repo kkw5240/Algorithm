@@ -26,43 +26,53 @@ import java.util.List;
  */
 public class LongestPalindrome {
     public String solution(String s) {
-        System.out.println("[" + s + "]");
-
-        if (s.length() == 1) {
+        if (isSingleCharString(s)) {
             return s;
         }
 
+        String result = "";
         for (int i = 0; i < s.length(); i++) {
             String prev = getPrev(s, i);
             String post = getPost(s, i);
 
-            printTemporary(prev, post);
-
-            StringBuilder result = new StringBuilder();
+            StringBuilder tempResult = new StringBuilder();
             int minLength = Math.min(prev.length(), post.length());
             for (int j = 0; j < minLength; j++) {
                 if (prev.charAt(j) != post.charAt(j)) {
-                    if (prev.charAt(j) == s.charAt(i)) {
-                        result.append(prev.charAt(j));
-                        result.append(s.charAt(i));
-                    }
+                    if (tempResult.length() == 0) {
+                        if (prev.charAt(j) == s.charAt(i)) {
+                            tempResult.append(prev.charAt(j));
+                            tempResult.append(s.charAt(i));
+                            break;
+                        }
 
-                    if (post.charAt(j) == s.charAt(i)) {
-                        result.append(s.charAt(i));
-                        result.append(post.charAt(j));
+                        if (post.charAt(j) == s.charAt(i)) {
+                            tempResult.append(s.charAt(i));
+                            tempResult.append(post.charAt(j));
+                            break;
+                        }
+
+                        tempResult.append(s.charAt(i));
                     }
 
                     break;
                 }
 
-                result.append(prev.charAt(j));
-                result.append(s.charAt(i));
-                result.append(post.charAt(j));
+                tempResult.append(prev.charAt(j));
+                tempResult.append(s.charAt(i));
+                tempResult.append(post.charAt(j));
             }
-            System.out.println("\t" + result);
+
+            if (result.length() < tempResult.length()) {
+                result = tempResult.toString();
+            }
         }
 
-        return null;
+        return result;
+    }
+
+    private boolean isSingleCharString(String s) {
+        return s.length() == 1;
     }
 
     String getPrev(String s, int i) {
@@ -77,12 +87,5 @@ public class LongestPalindrome {
 
     String getPost(String s, int i) {
         return s.substring(i + 1);
-    }
-
-
-    private void printTemporary(String prev, String post) {
-        System.out.println(prev + " - " + post);
-        System.out.println();
-        System.out.println();
     }
 }
