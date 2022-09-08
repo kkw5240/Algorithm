@@ -2,27 +2,28 @@ package com.kwkim.leetcode.problemlist.top100likedquestions;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LongestPalindromeTest {
+
     @Test
-    void getPrev1() {
-        assertEquals("ab", new LongestPalindrome().getPrev("babad", 2));
+    void getMedianIndexTest_1() {
+        assertEquals(1, new LongestPalindrome().getMedianIndex("abc"));
     }
+
     @Test
-    void getPrev2() {
-        assertEquals("b", new LongestPalindrome().getPrev("babad", 1));
+    void getMedianIndexTest_2() {
+        assertEquals(0, new LongestPalindrome().getMedianIndex("a"));
     }
+
     @Test
-    void getPost1() {
-        assertEquals("ad", new LongestPalindrome().getPost("babad", 2));
+    void getMedianIndexTest_3() {
+        assertEquals(0, new LongestPalindrome().getMedianIndex("ab"));
     }
+
     @Test
-    void getPost2() {
-        assertEquals("bad", new LongestPalindrome().getPost("babad", 1));
+    void getMedianIndexTest_4() {
+        assertEquals(1, new LongestPalindrome().getMedianIndex("abcd"));
     }
 
     @Test
@@ -39,6 +40,7 @@ public class LongestPalindromeTest {
     void example3() {
         assertEquals("b", new LongestPalindrome().solution("b"));
     }
+
     @Test
     void example4() {
         assertEquals("a", new LongestPalindrome().solution("ac"));
